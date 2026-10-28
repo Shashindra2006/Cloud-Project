@@ -1,0 +1,30 @@
+{
+  "model_name": "random_forest",
+  "training_timestamp": "2026-10-28 03:49:15.607777",
+  "training_samples": 500,
+  "window_size": 5,
+  "metrics": {
+    "best_model": "random_forest",
+    "best_mae": 3.2672,
+    "best_rmse": 5.5584,
+    "baseline_mae": 11.348,
+    "baseline_rmse": 16.4888,
+    "training_samples": 500,
+    "test_samples": 99,
+    "window_size": 5,
+    "all_results": {
+      "baseline_last_value": {
+        "mae": 11.348,
+        "rmse": 16.4888
+      },
+      "random_forest": {
+        "mae": 3.2672,
+        "rmse": 5.5584
+      },
+      "gradient_boosting": {
+        "mae": 3.4295,
+        "rmse": 6.0778
+      }
+    }
+  }
+}

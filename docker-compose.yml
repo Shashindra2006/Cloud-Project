@@ -1,0 +1,79 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: cloudopt-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-cloudopt}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cloudopt_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-cloudopt}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-cloudopt} -d ${POSTGRES_DB:-cloudopt}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    container_name: cloudopt-prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cloudopt-api
+    environment:
+      - DATABASE_URL=postgresql://cloudopt:cloudopt_pass@db:5432/cloudopt
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=cloudopt
+      - POSTGRES_PASSWORD=cloudopt_pass
+      - POSTGRES_DB=cloudopt
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - PROMETHEUS_URL=http://prometheus:9090
+      - OPTIMIZER_DRY_RUN=true
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./ml/models:/app/ml/models
+      - ./experiments/results:/app/experiments/results
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: cloudopt-dashboard
+    environment:
+      - API_URL=http://api:8000
+      - DASHBOARD_HOST=0.0.0.0
+      - DASHBOARD_PORT=8501
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  prometheus_data:

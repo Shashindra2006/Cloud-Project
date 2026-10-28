@@ -1,0 +1,6 @@
+{
+    "cpu_per_core_hour": 0.048,
+    "memory_per_gb_hour": 0.006,
+    "base_instance_hour": 0.0116,
+    "_comment": "Pricing based on approximate AWS t3.medium on-demand rates (us-east-1). Update these values to reflect your target cloud provider and region. See docs/COST_MODEL.md for details."
+}

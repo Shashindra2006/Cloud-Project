@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite3
+pgdata/
+
+# ML artifacts
+ml/models/*.joblib
+ml/models/*.pkl
+ml/models/*.h5
+*.joblib
+*.pkl
+
+# Experiment data (keep sample aggregated result for demo)
+!experiments/results/all_experiments.json
+
+# Docker
+docker-compose.override.yml
+
+# Kubernetes
+*.kubeconfig
+
+# Secrets and credentials
+secrets/
+*.pem
+*.key
+*.crt
+*.p12
+
+# Build output
+*.tar.gz
+*.whl
+
+# Logs
+*.log
+logs/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+
+# pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# Jupyter
+.ipynb_checkpoints/
