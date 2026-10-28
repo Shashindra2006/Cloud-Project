@@ -1,13 +1,13 @@
 [
   {
-    "experiment_id": "exp_stable_9d0606e2",
+    "experiment_id": "exp_stable_697a038b",
     "scenario": "stable",
     "duration_seconds": 300,
     "request_rate": 10.0,
     "initial_replicas": 1,
     "seed": 42,
-    "started_at": "2026-10-28T03:48:56.481564",
-    "completed_at": "2026-10-28T03:49:02.561374",
+    "started_at": "2026-10-28T03:53:36.268931",
+    "completed_at": "2026-10-28T03:53:39.214826",
     "baseline": {
       "avg_cpu": 36.12,
       "avg_memory": 42.3,
@@ -74,7 +74,7 @@
     },
     "baseline_timeseries": [
       {
-        "timestamp": "2026-10-28T03:48:56.489265",
+        "timestamp": "2026-10-28T03:53:36.269267",
         "cpu_usage": 36.49,
         "memory_usage": 44.72,
         "request_rate": 10.65,
@@ -87,7 +87,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:06.489354",
+        "timestamp": "2026-10-28T03:53:46.269292",
         "cpu_usage": 35.93,
         "memory_usage": 48.08,
         "request_rate": 10.77,
@@ -100,7 +100,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:16.489389",
+        "timestamp": "2026-10-28T03:53:56.269303",
         "cpu_usage": 36.7,
         "memory_usage": 43.78,
         "request_rate": 10.24,
@@ -113,7 +113,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:26.489416",
+        "timestamp": "2026-10-28T03:54:06.269311",
         "cpu_usage": 37.52,
         "memory_usage": 42.33,
         "request_rate": 10.31,
@@ -126,7 +126,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:36.489441",
+        "timestamp": "2026-10-28T03:54:16.269319",
         "cpu_usage": 44.26,
         "memory_usage": 43.44,
         "request_rate": 10.07,
@@ -139,7 +139,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:46.489466",
+        "timestamp": "2026-10-28T03:54:26.269327",
         "cpu_usage": 40.31,
         "memory_usage": 41.03,
         "request_rate": 10.38,
@@ -152,7 +152,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:56.489491",
+        "timestamp": "2026-10-28T03:54:36.269335",
         "cpu_usage": 37.74,
         "memory_usage": 46.41,
         "request_rate": 9.99,
@@ -165,7 +165,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:06.489514",
+        "timestamp": "2026-10-28T03:54:46.269342",
         "cpu_usage": 34.95,
         "memory_usage": 42.46,
         "request_rate": 8.04,
@@ -178,7 +178,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:16.489538",
+        "timestamp": "2026-10-28T03:54:56.269349",
         "cpu_usage": 39.5,
         "memory_usage": 41.73,
         "request_rate": 9.88,
@@ -191,7 +191,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:26.489562",
+        "timestamp": "2026-10-28T03:55:06.269356",
         "cpu_usage": 33.55,
         "memory_usage": 39.83,
         "request_rate": 11.06,
@@ -204,7 +204,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:36.489594",
+        "timestamp": "2026-10-28T03:55:16.269365",
         "cpu_usage": 35.02,
         "memory_usage": 39.41,
         "request_rate": 9.32,
@@ -217,7 +217,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:46.489618",
+        "timestamp": "2026-10-28T03:55:26.269373",
         "cpu_usage": 35.29,
         "memory_usage": 38.02,
         "request_rate": 9.69,
@@ -230,7 +230,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:56.489641",
+        "timestamp": "2026-10-28T03:55:36.269380",
         "cpu_usage": 29.78,
         "memory_usage": 38.96,
         "request_rate": 8.89,
@@ -243,7 +243,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:06.489663",
+        "timestamp": "2026-10-28T03:55:46.269387",
         "cpu_usage": 34.42,
         "memory_usage": 38.95,
         "request_rate": 11.0,
@@ -256,7 +256,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:16.489686",
+        "timestamp": "2026-10-28T03:55:56.269394",
         "cpu_usage": 31.09,
         "memory_usage": 42.08,
         "request_rate": 9.96,
@@ -269,7 +269,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:26.489708",
+        "timestamp": "2026-10-28T03:56:06.269401",
         "cpu_usage": 32.67,
         "memory_usage": 39.23,
         "request_rate": 9.7,
@@ -282,7 +282,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:36.489731",
+        "timestamp": "2026-10-28T03:56:16.269409",
         "cpu_usage": 30.27,
         "memory_usage": 39.97,
         "request_rate": 11.48,
@@ -295,7 +295,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:46.489754",
+        "timestamp": "2026-10-28T03:56:26.269416",
         "cpu_usage": 30.6,
         "memory_usage": 41.42,
         "request_rate": 10.33,
@@ -308,7 +308,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:56.489777",
+        "timestamp": "2026-10-28T03:56:36.269423",
         "cpu_usage": 33.89,
         "memory_usage": 41.98,
         "request_rate": 9.3,
@@ -321,7 +321,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:06.489799",
+        "timestamp": "2026-10-28T03:56:46.269430",
         "cpu_usage": 30.86,
         "memory_usage": 41.18,
         "request_rate": 10.26,
@@ -334,7 +334,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:16.489822",
+        "timestamp": "2026-10-28T03:56:56.269437",
         "cpu_usage": 32.62,
         "memory_usage": 40.36,
         "request_rate": 9.66,
@@ -347,7 +347,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:26.489844",
+        "timestamp": "2026-10-28T03:57:06.269444",
         "cpu_usage": 39.5,
         "memory_usage": 45.64,
         "request_rate": 10.17,
@@ -360,7 +360,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:36.489868",
+        "timestamp": "2026-10-28T03:57:16.269451",
         "cpu_usage": 33.58,
         "memory_usage": 42.47,
         "request_rate": 10.06,
@@ -373,7 +373,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:46.489890",
+        "timestamp": "2026-10-28T03:57:26.269458",
         "cpu_usage": 40.82,
         "memory_usage": 43.1,
         "request_rate": 8.83,
@@ -386,7 +386,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:56.489913",
+        "timestamp": "2026-10-28T03:57:36.269465",
         "cpu_usage": 42.32,
         "memory_usage": 41.93,
         "request_rate": 11.4,
@@ -399,7 +399,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:06.489936",
+        "timestamp": "2026-10-28T03:57:46.269472",
         "cpu_usage": 46.01,
         "memory_usage": 42.26,
         "request_rate": 9.43,
@@ -412,7 +412,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:16.489959",
+        "timestamp": "2026-10-28T03:57:56.269479",
         "cpu_usage": 33.79,
         "memory_usage": 44.76,
         "request_rate": 8.94,
@@ -425,7 +425,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:26.489983",
+        "timestamp": "2026-10-28T03:58:06.269487",
         "cpu_usage": 41.71,
         "memory_usage": 43.31,
         "request_rate": 9.68,
@@ -438,7 +438,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:36.490008",
+        "timestamp": "2026-10-28T03:58:16.269494",
         "cpu_usage": 36.14,
         "memory_usage": 47.61,
         "request_rate": 8.39,
@@ -451,7 +451,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:46.490036",
+        "timestamp": "2026-10-28T03:58:26.269502",
         "cpu_usage": 36.15,
         "memory_usage": 42.49,
         "request_rate": 8.68,
@@ -466,7 +466,7 @@
     ],
     "ai_timeseries": [
       {
-        "timestamp": "2026-10-28T03:48:56.489265",
+        "timestamp": "2026-10-28T03:53:36.269267",
         "cpu_usage": 36.49,
         "memory_usage": 44.72,
         "request_rate": 10.65,
@@ -479,7 +479,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:06.489354",
+        "timestamp": "2026-10-28T03:53:46.269292",
         "cpu_usage": 35.93,
         "memory_usage": 48.08,
         "request_rate": 10.77,
@@ -492,7 +492,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:16.489389",
+        "timestamp": "2026-10-28T03:53:56.269303",
         "cpu_usage": 36.7,
         "memory_usage": 43.78,
         "request_rate": 10.24,
@@ -505,7 +505,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:26.489416",
+        "timestamp": "2026-10-28T03:54:06.269311",
         "cpu_usage": 37.52,
         "memory_usage": 42.33,
         "request_rate": 10.31,
@@ -518,7 +518,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:36.489441",
+        "timestamp": "2026-10-28T03:54:16.269319",
         "cpu_usage": 44.26,
         "memory_usage": 43.44,
         "request_rate": 10.07,
@@ -531,7 +531,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:46.489466",
+        "timestamp": "2026-10-28T03:54:26.269327",
         "cpu_usage": 40.31,
         "memory_usage": 41.03,
         "request_rate": 10.38,
@@ -544,7 +544,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:56.489491",
+        "timestamp": "2026-10-28T03:54:36.269335",
         "cpu_usage": 37.74,
         "memory_usage": 46.41,
         "request_rate": 9.99,
@@ -557,7 +557,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:06.489514",
+        "timestamp": "2026-10-28T03:54:46.269342",
         "cpu_usage": 34.95,
         "memory_usage": 42.46,
         "request_rate": 8.04,
@@ -570,7 +570,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:16.489538",
+        "timestamp": "2026-10-28T03:54:56.269349",
         "cpu_usage": 39.5,
         "memory_usage": 41.73,
         "request_rate": 9.88,
@@ -583,7 +583,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:26.489562",
+        "timestamp": "2026-10-28T03:55:06.269356",
         "cpu_usage": 33.55,
         "memory_usage": 39.83,
         "request_rate": 11.06,
@@ -596,7 +596,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:36.489594",
+        "timestamp": "2026-10-28T03:55:16.269365",
         "cpu_usage": 35.02,
         "memory_usage": 39.41,
         "request_rate": 9.32,
@@ -609,7 +609,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:46.489618",
+        "timestamp": "2026-10-28T03:55:26.269373",
         "cpu_usage": 35.29,
         "memory_usage": 38.02,
         "request_rate": 9.69,
@@ -622,7 +622,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:56.489641",
+        "timestamp": "2026-10-28T03:55:36.269380",
         "cpu_usage": 29.78,
         "memory_usage": 38.96,
         "request_rate": 8.89,
@@ -635,7 +635,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:06.489663",
+        "timestamp": "2026-10-28T03:55:46.269387",
         "cpu_usage": 34.42,
         "memory_usage": 38.95,
         "request_rate": 11.0,
@@ -648,7 +648,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:16.489686",
+        "timestamp": "2026-10-28T03:55:56.269394",
         "cpu_usage": 31.09,
         "memory_usage": 42.08,
         "request_rate": 9.96,
@@ -661,7 +661,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:26.489708",
+        "timestamp": "2026-10-28T03:56:06.269401",
         "cpu_usage": 32.67,
         "memory_usage": 39.23,
         "request_rate": 9.7,
@@ -674,7 +674,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:36.489731",
+        "timestamp": "2026-10-28T03:56:16.269409",
         "cpu_usage": 30.27,
         "memory_usage": 39.97,
         "request_rate": 11.48,
@@ -687,7 +687,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:46.489754",
+        "timestamp": "2026-10-28T03:56:26.269416",
         "cpu_usage": 30.6,
         "memory_usage": 41.42,
         "request_rate": 10.33,
@@ -700,7 +700,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:56.489777",
+        "timestamp": "2026-10-28T03:56:36.269423",
         "cpu_usage": 33.89,
         "memory_usage": 41.98,
         "request_rate": 9.3,
@@ -713,7 +713,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:06.489799",
+        "timestamp": "2026-10-28T03:56:46.269430",
         "cpu_usage": 30.86,
         "memory_usage": 41.18,
         "request_rate": 10.26,
@@ -726,7 +726,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:16.489822",
+        "timestamp": "2026-10-28T03:56:56.269437",
         "cpu_usage": 32.62,
         "memory_usage": 40.36,
         "request_rate": 9.66,
@@ -739,7 +739,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:26.489844",
+        "timestamp": "2026-10-28T03:57:06.269444",
         "cpu_usage": 39.5,
         "memory_usage": 45.64,
         "request_rate": 10.17,
@@ -752,7 +752,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:36.489868",
+        "timestamp": "2026-10-28T03:57:16.269451",
         "cpu_usage": 33.58,
         "memory_usage": 42.47,
         "request_rate": 10.06,
@@ -765,7 +765,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:46.489890",
+        "timestamp": "2026-10-28T03:57:26.269458",
         "cpu_usage": 40.82,
         "memory_usage": 43.1,
         "request_rate": 8.83,
@@ -778,7 +778,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:56.489913",
+        "timestamp": "2026-10-28T03:57:36.269465",
         "cpu_usage": 42.32,
         "memory_usage": 41.93,
         "request_rate": 11.4,
@@ -791,7 +791,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:06.489936",
+        "timestamp": "2026-10-28T03:57:46.269472",
         "cpu_usage": 46.01,
         "memory_usage": 42.26,
         "request_rate": 9.43,
@@ -804,7 +804,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:16.489959",
+        "timestamp": "2026-10-28T03:57:56.269479",
         "cpu_usage": 33.79,
         "memory_usage": 44.76,
         "request_rate": 8.94,
@@ -817,7 +817,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:26.489983",
+        "timestamp": "2026-10-28T03:58:06.269487",
         "cpu_usage": 41.71,
         "memory_usage": 43.31,
         "request_rate": 9.68,
@@ -830,7 +830,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:36.490008",
+        "timestamp": "2026-10-28T03:58:16.269494",
         "cpu_usage": 36.14,
         "memory_usage": 47.61,
         "request_rate": 8.39,
@@ -843,7 +843,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:46.490036",
+        "timestamp": "2026-10-28T03:58:26.269502",
         "cpu_usage": 36.15,
         "memory_usage": 42.49,
         "request_rate": 8.68,
@@ -858,14 +858,14 @@
     ]
   },
   {
-    "experiment_id": "exp_ramp_up_6527952b",
+    "experiment_id": "exp_ramp_up_1a380249",
     "scenario": "ramp_up",
     "duration_seconds": 300,
     "request_rate": 10.0,
     "initial_replicas": 1,
     "seed": 42,
-    "started_at": "2026-10-28T03:49:02.571059",
-    "completed_at": "2026-10-28T03:49:08.420108",
+    "started_at": "2026-10-28T03:53:39.218246",
+    "completed_at": "2026-10-28T03:53:43.043214",
     "baseline": {
       "avg_cpu": 46.66,
       "avg_memory": 47.15,
@@ -932,7 +932,7 @@
     },
     "baseline_timeseries": [
       {
-        "timestamp": "2026-10-28T03:49:02.573597",
+        "timestamp": "2026-10-28T03:53:39.218527",
         "cpu_usage": 26.49,
         "memory_usage": 29.72,
         "request_rate": 11.3,
@@ -945,7 +945,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:12.573818",
+        "timestamp": "2026-10-28T03:53:49.218548",
         "cpu_usage": 26.13,
         "memory_usage": 34.66,
         "request_rate": 12.87,
@@ -958,7 +958,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:22.573845",
+        "timestamp": "2026-10-28T03:53:59.218557",
         "cpu_usage": 27.28,
         "memory_usage": 32.07,
         "request_rate": 13.15,
@@ -971,7 +971,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:32.573926",
+        "timestamp": "2026-10-28T03:54:09.218564",
         "cpu_usage": 28.81,
         "memory_usage": 32.47,
         "request_rate": 14.63,
@@ -984,7 +984,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:42.573946",
+        "timestamp": "2026-10-28T03:54:19.218572",
         "cpu_usage": 36.73,
         "memory_usage": 35.55,
         "request_rate": 15.47,
@@ -997,7 +997,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:52.573975",
+        "timestamp": "2026-10-28T03:54:29.218579",
         "cpu_usage": 34.5,
         "memory_usage": 35.2,
         "request_rate": 17.42,
@@ -1010,7 +1010,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:02.573993",
+        "timestamp": "2026-10-28T03:54:39.218586",
         "cpu_usage": 34.19,
         "memory_usage": 42.7,
         "request_rate": 17.97,
@@ -1023,7 +1023,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:12.574011",
+        "timestamp": "2026-10-28T03:54:49.218593",
         "cpu_usage": 34.17,
         "memory_usage": 40.92,
         "request_rate": 15.41,
@@ -1036,7 +1036,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:22.574361",
+        "timestamp": "2026-10-28T03:54:59.218600",
         "cpu_usage": 41.88,
         "memory_usage": 42.34,
         "request_rate": 20.44,
@@ -1049,7 +1049,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:32.574405",
+        "timestamp": "2026-10-28T03:55:09.218607",
         "cpu_usage": 39.34,
         "memory_usage": 42.58,
         "request_rate": 24.11,
@@ -1062,7 +1062,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:42.574426",
+        "timestamp": "2026-10-28T03:55:19.218614",
         "cpu_usage": 44.31,
         "memory_usage": 44.23,
         "request_rate": 21.98,
@@ -1075,7 +1075,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:52.574445",
+        "timestamp": "2026-10-28T03:55:29.218621",
         "cpu_usage": 47.96,
         "memory_usage": 44.82,
         "request_rate": 24.05,
@@ -1088,7 +1088,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:02.574464",
+        "timestamp": "2026-10-28T03:55:39.218628",
         "cpu_usage": 45.56,
         "memory_usage": 47.63,
         "request_rate": 23.79,
@@ -1101,7 +1101,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:12.574482",
+        "timestamp": "2026-10-28T03:55:49.218635",
         "cpu_usage": 52.9,
         "memory_usage": 49.36,
         "request_rate": 29.34,
@@ -1114,7 +1114,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:22.574500",
+        "timestamp": "2026-10-28T03:55:59.218642",
         "cpu_usage": 51.75,
         "memory_usage": 54.08,
         "request_rate": 28.6,
@@ -1127,7 +1127,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:32.574517",
+        "timestamp": "2026-10-28T03:56:09.218649",
         "cpu_usage": 54.97,
         "memory_usage": 52.67,
         "request_rate": 29.4,
@@ -1140,7 +1140,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:42.574539",
+        "timestamp": "2026-10-28T03:56:19.218656",
         "cpu_usage": 53.67,
         "memory_usage": 54.71,
         "request_rate": 34.29,
@@ -1153,7 +1153,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:52.574556",
+        "timestamp": "2026-10-28T03:56:29.218663",
         "cpu_usage": 54.66,
         "memory_usage": 57.33,
         "request_rate": 33.32,
@@ -1166,7 +1166,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:02.574573",
+        "timestamp": "2026-10-28T03:56:39.218669",
         "cpu_usage": 58.29,
         "memory_usage": 58.94,
         "request_rate": 32.6,
@@ -1179,7 +1179,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:12.574590",
+        "timestamp": "2026-10-28T03:56:49.218676",
         "cpu_usage": 55.44,
         "memory_usage": 59.09,
         "request_rate": 35.86,
@@ -1192,7 +1192,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:22.574610",
+        "timestamp": "2026-10-28T03:56:59.218683",
         "cpu_usage": 57.42,
         "memory_usage": 59.16,
         "request_rate": 35.98,
@@ -1205,7 +1205,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:32.574626",
+        "timestamp": "2026-10-28T03:57:09.218690",
         "cpu_usage": 64.71,
         "memory_usage": 65.27,
         "request_rate": 38.35,
@@ -1218,7 +1218,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:42.574643",
+        "timestamp": "2026-10-28T03:57:19.218697",
         "cpu_usage": 59.58,
         "memory_usage": 62.95,
         "request_rate": 39.45,
@@ -1231,7 +1231,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:52.574660",
+        "timestamp": "2026-10-28T03:57:29.218704",
         "cpu_usage": 68.07,
         "memory_usage": 64.43,
         "request_rate": 38.33,
@@ -1244,7 +1244,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:02.574677",
+        "timestamp": "2026-10-28T03:57:39.218710",
         "cpu_usage": 71.37,
         "memory_usage": 64.18,
         "request_rate": 44.81,
@@ -1257,7 +1257,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:12.574693",
+        "timestamp": "2026-10-28T03:57:49.218717",
         "cpu_usage": 77.4,
         "memory_usage": 65.52,
         "request_rate": 42.2,
@@ -1270,7 +1270,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:22.574710",
+        "timestamp": "2026-10-28T03:57:59.218724",
         "cpu_usage": 34.005,
         "memory_usage": 34.57,
         "request_rate": 42.54,
@@ -1283,7 +1283,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:32.574728",
+        "timestamp": "2026-10-28T03:58:09.218731",
         "cpu_usage": 39.575,
         "memory_usage": 34.465,
         "request_rate": 45.36,
@@ -1296,7 +1296,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:42.574745",
+        "timestamp": "2026-10-28T03:58:19.218738",
         "cpu_usage": 38.51,
         "memory_usage": 37.305,
         "request_rate": 44.12,
@@ -1309,7 +1309,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:52.574761",
+        "timestamp": "2026-10-28T03:58:29.218745",
         "cpu_usage": 40.255,
         "memory_usage": 35.515,
         "request_rate": 46.03,
@@ -1324,7 +1324,7 @@
     ],
     "ai_timeseries": [
       {
-        "timestamp": "2026-10-28T03:49:02.573597",
+        "timestamp": "2026-10-28T03:53:39.218527",
         "cpu_usage": 26.49,
         "memory_usage": 29.72,
         "request_rate": 11.3,
@@ -1337,7 +1337,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:12.573818",
+        "timestamp": "2026-10-28T03:53:49.218548",
         "cpu_usage": 26.13,
         "memory_usage": 34.66,
         "request_rate": 12.87,
@@ -1350,7 +1350,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:22.573845",
+        "timestamp": "2026-10-28T03:53:59.218557",
         "cpu_usage": 27.28,
         "memory_usage": 32.07,
         "request_rate": 13.15,
@@ -1363,7 +1363,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:32.573926",
+        "timestamp": "2026-10-28T03:54:09.218564",
         "cpu_usage": 28.81,
         "memory_usage": 32.47,
         "request_rate": 14.63,
@@ -1376,7 +1376,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:42.573946",
+        "timestamp": "2026-10-28T03:54:19.218572",
         "cpu_usage": 36.73,
         "memory_usage": 35.55,
         "request_rate": 15.47,
@@ -1389,7 +1389,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:52.573975",
+        "timestamp": "2026-10-28T03:54:29.218579",
         "cpu_usage": 34.5,
         "memory_usage": 35.2,
         "request_rate": 17.42,
@@ -1402,7 +1402,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:02.573993",
+        "timestamp": "2026-10-28T03:54:39.218586",
         "cpu_usage": 34.19,
         "memory_usage": 42.7,
         "request_rate": 17.97,
@@ -1415,7 +1415,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:12.574011",
+        "timestamp": "2026-10-28T03:54:49.218593",
         "cpu_usage": 34.17,
         "memory_usage": 40.92,
         "request_rate": 15.41,
@@ -1428,7 +1428,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:22.574361",
+        "timestamp": "2026-10-28T03:54:59.218600",
         "cpu_usage": 41.88,
         "memory_usage": 42.34,
         "request_rate": 20.44,
@@ -1441,7 +1441,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:32.574405",
+        "timestamp": "2026-10-28T03:55:09.218607",
         "cpu_usage": 39.34,
         "memory_usage": 42.58,
         "request_rate": 24.11,
@@ -1454,7 +1454,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:42.574426",
+        "timestamp": "2026-10-28T03:55:19.218614",
         "cpu_usage": 44.31,
         "memory_usage": 44.23,
         "request_rate": 21.98,
@@ -1467,7 +1467,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:52.574445",
+        "timestamp": "2026-10-28T03:55:29.218621",
         "cpu_usage": 47.96,
         "memory_usage": 44.82,
         "request_rate": 24.05,
@@ -1480,7 +1480,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:02.574464",
+        "timestamp": "2026-10-28T03:55:39.218628",
         "cpu_usage": 45.56,
         "memory_usage": 47.63,
         "request_rate": 23.79,
@@ -1493,7 +1493,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:12.574482",
+        "timestamp": "2026-10-28T03:55:49.218635",
         "cpu_usage": 52.9,
         "memory_usage": 49.36,
         "request_rate": 29.34,
@@ -1506,7 +1506,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:22.574500",
+        "timestamp": "2026-10-28T03:55:59.218642",
         "cpu_usage": 51.75,
         "memory_usage": 54.08,
         "request_rate": 28.6,
@@ -1519,7 +1519,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:32.574517",
+        "timestamp": "2026-10-28T03:56:09.218649",
         "cpu_usage": 54.97,
         "memory_usage": 52.67,
         "request_rate": 29.4,
@@ -1532,7 +1532,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:42.574539",
+        "timestamp": "2026-10-28T03:56:19.218656",
         "cpu_usage": 53.67,
         "memory_usage": 54.71,
         "request_rate": 34.29,
@@ -1545,7 +1545,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:52.574556",
+        "timestamp": "2026-10-28T03:56:29.218663",
         "cpu_usage": 27.33,
         "memory_usage": 28.665,
         "request_rate": 33.32,
@@ -1558,7 +1558,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:02.574573",
+        "timestamp": "2026-10-28T03:56:39.218669",
         "cpu_usage": 29.145,
         "memory_usage": 29.47,
         "request_rate": 32.6,
@@ -1571,7 +1571,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:12.574590",
+        "timestamp": "2026-10-28T03:56:49.218676",
         "cpu_usage": 27.72,
         "memory_usage": 29.545,
         "request_rate": 35.86,
@@ -1584,7 +1584,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:22.574610",
+        "timestamp": "2026-10-28T03:56:59.218683",
         "cpu_usage": 28.71,
         "memory_usage": 29.58,
         "request_rate": 35.98,
@@ -1597,7 +1597,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:32.574626",
+        "timestamp": "2026-10-28T03:57:09.218690",
         "cpu_usage": 32.355,
         "memory_usage": 32.635,
         "request_rate": 38.35,
@@ -1610,7 +1610,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:42.574643",
+        "timestamp": "2026-10-28T03:57:19.218697",
         "cpu_usage": 29.79,
         "memory_usage": 31.475,
         "request_rate": 39.45,
@@ -1623,7 +1623,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:52.574660",
+        "timestamp": "2026-10-28T03:57:29.218704",
         "cpu_usage": 34.035,
         "memory_usage": 32.215,
         "request_rate": 38.33,
@@ -1636,7 +1636,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:02.574677",
+        "timestamp": "2026-10-28T03:57:39.218710",
         "cpu_usage": 35.685,
         "memory_usage": 32.09,
         "request_rate": 44.81,
@@ -1649,7 +1649,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:12.574693",
+        "timestamp": "2026-10-28T03:57:49.218717",
         "cpu_usage": 38.7,
         "memory_usage": 32.76,
         "request_rate": 42.2,
@@ -1662,7 +1662,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:22.574710",
+        "timestamp": "2026-10-28T03:57:59.218724",
         "cpu_usage": 34.005,
         "memory_usage": 34.57,
         "request_rate": 42.54,
@@ -1675,7 +1675,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:32.574728",
+        "timestamp": "2026-10-28T03:58:09.218731",
         "cpu_usage": 39.575,
         "memory_usage": 34.465,
         "request_rate": 45.36,
@@ -1688,7 +1688,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:42.574745",
+        "timestamp": "2026-10-28T03:58:19.218738",
         "cpu_usage": 38.51,
         "memory_usage": 37.305,
         "request_rate": 44.12,
@@ -1701,7 +1701,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:52.574761",
+        "timestamp": "2026-10-28T03:58:29.218745",
         "cpu_usage": 40.255,
         "memory_usage": 35.515,
         "request_rate": 46.03,
@@ -1716,14 +1716,14 @@
     ]
   },
   {
-    "experiment_id": "exp_spike_4ed1396b",
+    "experiment_id": "exp_spike_5f73a964",
     "scenario": "spike",
     "duration_seconds": 300,
     "request_rate": 10.0,
     "initial_replicas": 1,
     "seed": 42,
-    "started_at": "2026-10-28T03:49:08.427322",
-    "completed_at": "2026-10-28T03:49:14.185963",
+    "started_at": "2026-10-28T03:53:43.050859",
+    "completed_at": "2026-10-28T03:53:47.288970",
     "baseline": {
       "avg_cpu": 43.88,
       "avg_memory": 50.16,
@@ -1790,7 +1790,7 @@
     },
     "baseline_timeseries": [
       {
-        "timestamp": "2026-10-28T03:49:08.427701",
+        "timestamp": "2026-10-28T03:53:43.051505",
         "cpu_usage": 36.99,
         "memory_usage": 44.72,
         "request_rate": 11.94,
@@ -1803,7 +1803,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:18.427742",
+        "timestamp": "2026-10-28T03:53:53.051567",
         "cpu_usage": 67.01,
         "memory_usage": 71.22,
         "request_rate": 78.19,
@@ -1816,7 +1816,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:28.427765",
+        "timestamp": "2026-10-28T03:54:03.051597",
         "cpu_usage": 66.09,
         "memory_usage": 67.13,
         "request_rate": 76.61,
@@ -1829,7 +1829,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:38.427785",
+        "timestamp": "2026-10-28T03:54:13.051624",
         "cpu_usage": 32.75,
         "memory_usage": 42.97,
         "request_rate": 10.94,
@@ -1842,7 +1842,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:48.427805",
+        "timestamp": "2026-10-28T03:54:23.051650",
         "cpu_usage": 40.86,
         "memory_usage": 44.55,
         "request_rate": 10.2,
@@ -1855,7 +1855,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:58.427824",
+        "timestamp": "2026-10-28T03:54:33.051677",
         "cpu_usage": 35.44,
         "memory_usage": 42.7,
         "request_rate": 11.13,
@@ -1868,7 +1868,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:08.427843",
+        "timestamp": "2026-10-28T03:54:43.051701",
         "cpu_usage": 32.59,
         "memory_usage": 48.7,
         "request_rate": 9.96,
@@ -1881,7 +1881,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:18.427861",
+        "timestamp": "2026-10-28T03:54:53.051724",
         "cpu_usage": 63.06,
         "memory_usage": 68.48,
         "request_rate": 70.01,
@@ -1894,7 +1894,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:28.427879",
+        "timestamp": "2026-10-28T03:55:03.051748",
         "cpu_usage": 70.9,
         "memory_usage": 68.4,
         "request_rate": 75.54,
@@ -1907,7 +1907,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:38.427898",
+        "timestamp": "2026-10-28T03:55:13.051772",
         "cpu_usage": 32.12,
         "memory_usage": 44.08,
         "request_rate": 13.17,
@@ -1920,7 +1920,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:48.427915",
+        "timestamp": "2026-10-28T03:55:23.051795",
         "cpu_usage": 36.3,
         "memory_usage": 44.23,
         "request_rate": 7.97,
@@ -1933,7 +1933,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:58.427933",
+        "timestamp": "2026-10-28T03:55:33.051818",
         "cpu_usage": 38.73,
         "memory_usage": 43.32,
         "request_rate": 9.07,
@@ -1946,7 +1946,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:08.427951",
+        "timestamp": "2026-10-28T03:55:43.051841",
         "cpu_usage": 33.08,
         "memory_usage": 44.63,
         "request_rate": 6.68,
@@ -1959,7 +1959,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:18.427969",
+        "timestamp": "2026-10-28T03:55:53.051863",
         "cpu_usage": 73.37,
         "memory_usage": 67.92,
         "request_rate": 78.9,
@@ -1972,7 +1972,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:28.427986",
+        "timestamp": "2026-10-28T03:56:03.051888",
         "cpu_usage": 69.39,
         "memory_usage": 71.14,
         "request_rate": 75.78,
@@ -1985,7 +1985,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:38.428004",
+        "timestamp": "2026-10-28T03:56:13.051911",
         "cpu_usage": 38.29,
         "memory_usage": 45.17,
         "request_rate": 9.1,
@@ -1998,7 +1998,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:48.428022",
+        "timestamp": "2026-10-28T03:56:23.051935",
         "cpu_usage": 34.12,
         "memory_usage": 45.71,
         "request_rate": 14.43,
@@ -2011,7 +2011,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:58.428041",
+        "timestamp": "2026-10-28T03:56:33.051958",
         "cpu_usage": 32.99,
         "memory_usage": 46.83,
         "request_rate": 10.99,
@@ -2024,7 +2024,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:08.428058",
+        "timestamp": "2026-10-28T03:56:43.051981",
         "cpu_usage": 35.39,
         "memory_usage": 46.94,
         "request_rate": 7.89,
@@ -2037,7 +2037,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:18.428076",
+        "timestamp": "2026-10-28T03:56:53.052004",
         "cpu_usage": 62.09,
         "memory_usage": 68.65,
         "request_rate": 76.67,
@@ -2050,7 +2050,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:28.428553",
+        "timestamp": "2026-10-28T03:57:03.052027",
         "cpu_usage": 62.28,
         "memory_usage": 67.22,
         "request_rate": 74.86,
@@ -2063,7 +2063,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:38.428586",
+        "timestamp": "2026-10-28T03:57:13.052050",
         "cpu_usage": 36.62,
         "memory_usage": 48.77,
         "request_rate": 10.52,
@@ -2076,7 +2076,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:48.428608",
+        "timestamp": "2026-10-28T03:57:23.052072",
         "cpu_usage": 27.32,
         "memory_usage": 44.95,
         "request_rate": 10.18,
@@ -2089,7 +2089,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:58.428627",
+        "timestamp": "2026-10-28T03:57:33.052095",
         "cpu_usage": 36.21,
         "memory_usage": 44.93,
         "request_rate": 6.49,
@@ -2102,7 +2102,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:08.428649",
+        "timestamp": "2026-10-28T03:57:43.052118",
         "cpu_usage": 38.16,
         "memory_usage": 43.18,
         "request_rate": 14.21,
@@ -2115,7 +2115,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:18.428668",
+        "timestamp": "2026-10-28T03:57:53.052141",
         "cpu_usage": 76.7,
         "memory_usage": 66.08,
         "request_rate": 74.19,
@@ -2128,7 +2128,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:28.428687",
+        "timestamp": "2026-10-28T03:58:03.052164",
         "cpu_usage": 30.87,
         "memory_usage": 34.1,
         "request_rate": 72.7,
@@ -2141,7 +2141,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:38.428708",
+        "timestamp": "2026-10-28T03:58:13.052189",
         "cpu_usage": 20.6,
         "memory_usage": 21.715,
         "request_rate": 9.03,
@@ -2154,7 +2154,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:48.428727",
+        "timestamp": "2026-10-28T03:58:23.052214",
         "cpu_usage": 17.955,
         "memory_usage": 23.805,
         "request_rate": 5.18,
@@ -2167,7 +2167,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:58.428744",
+        "timestamp": "2026-10-28T03:58:33.052240",
         "cpu_usage": 38.13,
         "memory_usage": 42.53,
         "request_rate": 6.04,
@@ -2182,7 +2182,7 @@
     ],
     "ai_timeseries": [
       {
-        "timestamp": "2026-10-28T03:49:08.427701",
+        "timestamp": "2026-10-28T03:53:43.051505",
         "cpu_usage": 36.99,
         "memory_usage": 44.72,
         "request_rate": 11.94,
@@ -2195,7 +2195,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:18.427742",
+        "timestamp": "2026-10-28T03:53:53.051567",
         "cpu_usage": 67.01,
         "memory_usage": 71.22,
         "request_rate": 78.19,
@@ -2208,7 +2208,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:28.427765",
+        "timestamp": "2026-10-28T03:54:03.051597",
         "cpu_usage": 33.045,
         "memory_usage": 33.565,
         "request_rate": 76.61,
@@ -2221,7 +2221,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:38.427785",
+        "timestamp": "2026-10-28T03:54:13.051624",
         "cpu_usage": 16.375,
         "memory_usage": 21.485,
         "request_rate": 10.94,
@@ -2234,7 +2234,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:48.427805",
+        "timestamp": "2026-10-28T03:54:23.051650",
         "cpu_usage": 20.43,
         "memory_usage": 22.275,
         "request_rate": 10.2,
@@ -2247,7 +2247,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:58.427824",
+        "timestamp": "2026-10-28T03:54:33.051677",
         "cpu_usage": 35.44,
         "memory_usage": 42.7,
         "request_rate": 11.13,
@@ -2260,7 +2260,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:08.427843",
+        "timestamp": "2026-10-28T03:54:43.051701",
         "cpu_usage": 32.59,
         "memory_usage": 48.7,
         "request_rate": 9.96,
@@ -2273,7 +2273,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:18.427861",
+        "timestamp": "2026-10-28T03:54:53.051724",
         "cpu_usage": 63.06,
         "memory_usage": 68.48,
         "request_rate": 70.01,
@@ -2286,7 +2286,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:28.427879",
+        "timestamp": "2026-10-28T03:55:03.051748",
         "cpu_usage": 70.9,
         "memory_usage": 68.4,
         "request_rate": 75.54,
@@ -2299,7 +2299,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:38.427898",
+        "timestamp": "2026-10-28T03:55:13.051772",
         "cpu_usage": 32.12,
         "memory_usage": 44.08,
         "request_rate": 13.17,
@@ -2312,7 +2312,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:48.427915",
+        "timestamp": "2026-10-28T03:55:23.051795",
         "cpu_usage": 36.3,
         "memory_usage": 44.23,
         "request_rate": 7.97,
@@ -2325,7 +2325,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:58.427933",
+        "timestamp": "2026-10-28T03:55:33.051818",
         "cpu_usage": 38.73,
         "memory_usage": 43.32,
         "request_rate": 9.07,
@@ -2338,7 +2338,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:08.427951",
+        "timestamp": "2026-10-28T03:55:43.051841",
         "cpu_usage": 33.08,
         "memory_usage": 44.63,
         "request_rate": 6.68,
@@ -2351,7 +2351,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:18.427969",
+        "timestamp": "2026-10-28T03:55:53.051863",
         "cpu_usage": 73.37,
         "memory_usage": 67.92,
         "request_rate": 78.9,
@@ -2364,7 +2364,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:28.427986",
+        "timestamp": "2026-10-28T03:56:03.051888",
         "cpu_usage": 69.39,
         "memory_usage": 71.14,
         "request_rate": 75.78,
@@ -2377,7 +2377,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:38.428004",
+        "timestamp": "2026-10-28T03:56:13.051911",
         "cpu_usage": 38.29,
         "memory_usage": 45.17,
         "request_rate": 9.1,
@@ -2390,7 +2390,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:48.428022",
+        "timestamp": "2026-10-28T03:56:23.051935",
         "cpu_usage": 34.12,
         "memory_usage": 45.71,
         "request_rate": 14.43,
@@ -2403,7 +2403,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:58.428041",
+        "timestamp": "2026-10-28T03:56:33.051958",
         "cpu_usage": 32.99,
         "memory_usage": 46.83,
         "request_rate": 10.99,
@@ -2416,7 +2416,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:08.428058",
+        "timestamp": "2026-10-28T03:56:43.051981",
         "cpu_usage": 35.39,
         "memory_usage": 46.94,
         "request_rate": 7.89,
@@ -2429,7 +2429,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:18.428076",
+        "timestamp": "2026-10-28T03:56:53.052004",
         "cpu_usage": 62.09,
         "memory_usage": 68.65,
         "request_rate": 76.67,
@@ -2442,7 +2442,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:28.428553",
+        "timestamp": "2026-10-28T03:57:03.052027",
         "cpu_usage": 62.28,
         "memory_usage": 67.22,
         "request_rate": 74.86,
@@ -2455,7 +2455,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:38.428586",
+        "timestamp": "2026-10-28T03:57:13.052050",
         "cpu_usage": 36.62,
         "memory_usage": 48.77,
         "request_rate": 10.52,
@@ -2468,7 +2468,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:48.428608",
+        "timestamp": "2026-10-28T03:57:23.052072",
         "cpu_usage": 27.32,
         "memory_usage": 44.95,
         "request_rate": 10.18,
@@ -2481,7 +2481,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:58.428627",
+        "timestamp": "2026-10-28T03:57:33.052095",
         "cpu_usage": 36.21,
         "memory_usage": 44.93,
         "request_rate": 6.49,
@@ -2494,7 +2494,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:08.428649",
+        "timestamp": "2026-10-28T03:57:43.052118",
         "cpu_usage": 38.16,
         "memory_usage": 43.18,
         "request_rate": 14.21,
@@ -2507,7 +2507,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:18.428668",
+        "timestamp": "2026-10-28T03:57:53.052141",
         "cpu_usage": 76.7,
         "memory_usage": 66.08,
         "request_rate": 74.19,
@@ -2520,7 +2520,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:28.428687",
+        "timestamp": "2026-10-28T03:58:03.052164",
         "cpu_usage": 61.74,
         "memory_usage": 68.2,
         "request_rate": 72.7,
@@ -2533,7 +2533,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:38.428708",
+        "timestamp": "2026-10-28T03:58:13.052189",
         "cpu_usage": 41.2,
         "memory_usage": 43.43,
         "request_rate": 9.03,
@@ -2546,7 +2546,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:48.428727",
+        "timestamp": "2026-10-28T03:58:23.052214",
         "cpu_usage": 35.91,
         "memory_usage": 47.61,
         "request_rate": 5.18,
@@ -2559,7 +2559,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:58.428744",
+        "timestamp": "2026-10-28T03:58:33.052240",
         "cpu_usage": 38.13,
         "memory_usage": 42.53,
         "request_rate": 6.04,
@@ -2574,14 +2574,14 @@
     ]
   },
   {
-    "experiment_id": "exp_low_demand_b1b7c527",
+    "experiment_id": "exp_low_demand_11e4ffd8",
     "scenario": "low_demand",
     "duration_seconds": 300,
     "request_rate": 10.0,
     "initial_replicas": 1,
     "seed": 42,
-    "started_at": "2026-10-28T03:49:14.190263",
-    "completed_at": "2026-10-28T03:49:17.554909",
+    "started_at": "2026-10-28T03:53:47.292949",
+    "completed_at": "2026-10-28T03:53:50.753908",
     "baseline": {
       "avg_cpu": 8.4,
       "avg_memory": 15.06,
@@ -2648,7 +2648,7 @@
     },
     "baseline_timeseries": [
       {
-        "timestamp": "2026-10-28T03:49:14.190557",
+        "timestamp": "2026-10-28T03:53:47.293272",
         "cpu_usage": 8.75,
         "memory_usage": 14.86,
         "request_rate": 2.32,
@@ -2661,7 +2661,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:24.190586",
+        "timestamp": "2026-10-28T03:53:57.293298",
         "cpu_usage": 7.98,
         "memory_usage": 16.58,
         "request_rate": 2.38,
@@ -2674,7 +2674,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:34.190598",
+        "timestamp": "2026-10-28T03:54:07.293307",
         "cpu_usage": 7.96,
         "memory_usage": 14.53,
         "request_rate": 2.12,
@@ -2687,7 +2687,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:44.190608",
+        "timestamp": "2026-10-28T03:54:17.293315",
         "cpu_usage": 8.12,
         "memory_usage": 13.99,
         "request_rate": 2.16,
@@ -2700,7 +2700,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:49:54.190618",
+        "timestamp": "2026-10-28T03:54:27.293323",
         "cpu_usage": 11.44,
         "memory_usage": 14.77,
         "request_rate": 2.03,
@@ -2713,7 +2713,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:04.190631",
+        "timestamp": "2026-10-28T03:54:37.293332",
         "cpu_usage": 9.65,
         "memory_usage": 13.85,
         "request_rate": 2.19,
@@ -2726,7 +2726,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:14.190641",
+        "timestamp": "2026-10-28T03:54:47.293339",
         "cpu_usage": 8.78,
         "memory_usage": 16.85,
         "request_rate": 1.99,
@@ -2739,7 +2739,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:24.190650",
+        "timestamp": "2026-10-28T03:54:57.293346",
         "cpu_usage": 8.01,
         "memory_usage": 15.21,
         "request_rate": 1.02,
@@ -2752,7 +2752,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:34.190660",
+        "timestamp": "2026-10-28T03:55:07.293354",
         "cpu_usage": 11.05,
         "memory_usage": 15.17,
         "request_rate": 1.94,
@@ -2765,7 +2765,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:44.190670",
+        "timestamp": "2026-10-28T03:55:17.293361",
         "cpu_usage": 8.92,
         "memory_usage": 14.54,
         "request_rate": 2.53,
@@ -2778,7 +2778,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:50:54.190679",
+        "timestamp": "2026-10-28T03:55:27.293368",
         "cpu_usage": 10.48,
         "memory_usage": 14.61,
         "request_rate": 1.66,
@@ -2791,7 +2791,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:04.190690",
+        "timestamp": "2026-10-28T03:55:37.293376",
         "cpu_usage": 11.33,
         "memory_usage": 14.16,
         "request_rate": 1.85,
@@ -2804,7 +2804,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:14.190702",
+        "timestamp": "2026-10-28T03:55:47.293383",
         "cpu_usage": 9.1,
         "memory_usage": 14.81,
         "request_rate": 1.45,
@@ -2817,7 +2817,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:24.190711",
+        "timestamp": "2026-10-28T03:55:57.293391",
         "cpu_usage": 11.69,
         "memory_usage": 14.93,
         "request_rate": 2.5,
@@ -2830,7 +2830,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:34.190721",
+        "timestamp": "2026-10-28T03:56:07.293399",
         "cpu_usage": 9.99,
         "memory_usage": 16.54,
         "request_rate": 1.98,
@@ -2843,7 +2843,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:44.190731",
+        "timestamp": "2026-10-28T03:56:17.293408",
         "cpu_usage": 10.43,
         "memory_usage": 15.09,
         "request_rate": 1.85,
@@ -2856,7 +2856,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:51:54.190742",
+        "timestamp": "2026-10-28T03:56:27.293417",
         "cpu_usage": 8.59,
         "memory_usage": 15.36,
         "request_rate": 2.74,
@@ -2869,7 +2869,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:04.190752",
+        "timestamp": "2026-10-28T03:56:37.293424",
         "cpu_usage": 7.85,
         "memory_usage": 15.92,
         "request_rate": 2.16,
@@ -2882,7 +2882,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:14.190764",
+        "timestamp": "2026-10-28T03:56:47.293431",
         "cpu_usage": 8.43,
         "memory_usage": 15.97,
         "request_rate": 1.65,
@@ -2895,7 +2895,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:24.190773",
+        "timestamp": "2026-10-28T03:56:57.293438",
         "cpu_usage": 5.75,
         "memory_usage": 15.3,
         "request_rate": 2.13,
@@ -2908,7 +2908,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:34.190782",
+        "timestamp": "2026-10-28T03:57:07.293445",
         "cpu_usage": 5.5,
         "memory_usage": 14.58,
         "request_rate": 1.83,
@@ -2921,7 +2921,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:44.190792",
+        "timestamp": "2026-10-28T03:57:17.293453",
         "cpu_usage": 7.9,
         "memory_usage": 16.89,
         "request_rate": 2.09,
@@ -2934,7 +2934,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:52:54.190801",
+        "timestamp": "2026-10-28T03:57:27.293460",
         "cpu_usage": 4.12,
         "memory_usage": 14.97,
         "request_rate": 2.03,
@@ -2947,7 +2947,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:04.190813",
+        "timestamp": "2026-10-28T03:57:37.293467",
         "cpu_usage": 7.18,
         "memory_usage": 14.97,
         "request_rate": 1.42,
@@ -2960,7 +2960,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:14.190822",
+        "timestamp": "2026-10-28T03:57:47.293474",
         "cpu_usage": 7.67,
         "memory_usage": 14.09,
         "request_rate": 2.7,
@@ -2973,7 +2973,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:24.190832",
+        "timestamp": "2026-10-28T03:57:57.293482",
         "cpu_usage": 9.58,
         "memory_usage": 14.01,
         "request_rate": 1.72,
@@ -2986,7 +2986,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:34.190842",
+        "timestamp": "2026-10-28T03:58:07.293489",
         "cpu_usage": 3.82,
         "memory_usage": 15.07,
         "request_rate": 1.47,
@@ -2999,7 +2999,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:44.190854",
+        "timestamp": "2026-10-28T03:58:17.293497",
         "cpu_usage": 8.37,
         "memory_usage": 14.22,
         "request_rate": 1.84,
@@ -3012,7 +3012,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:53:54.190864",
+        "timestamp": "2026-10-28T03:58:27.293504",
         "cpu_usage": 6.34,
         "memory_usage": 16.31,
         "request_rate": 1.2,
@@ -3025,7 +3025,7 @@
         "mode": "baseline"
       },
       {
-        "timestamp": "2026-10-28T03:54:04.190874",
+        "timestamp": "2026-10-28T03:58:37.293511",
         "cpu_usage": 7.19,
         "memory_usage": 13.76,
         "request_rate": 1.34,
@@ -3040,7 +3040,7 @@
     ],
     "ai_timeseries": [
       {
-        "timestamp": "2026-10-28T03:49:14.190557",
+        "timestamp": "2026-10-28T03:53:47.293272",
         "cpu_usage": 8.75,
         "memory_usage": 14.86,
         "request_rate": 2.32,
@@ -3053,7 +3053,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:24.190586",
+        "timestamp": "2026-10-28T03:53:57.293298",
         "cpu_usage": 7.98,
         "memory_usage": 16.58,
         "request_rate": 2.38,
@@ -3066,7 +3066,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:34.190598",
+        "timestamp": "2026-10-28T03:54:07.293307",
         "cpu_usage": 7.96,
         "memory_usage": 14.53,
         "request_rate": 2.12,
@@ -3079,7 +3079,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:44.190608",
+        "timestamp": "2026-10-28T03:54:17.293315",
         "cpu_usage": 8.12,
         "memory_usage": 13.99,
         "request_rate": 2.16,
@@ -3092,7 +3092,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:49:54.190618",
+        "timestamp": "2026-10-28T03:54:27.293323",
         "cpu_usage": 11.44,
         "memory_usage": 14.77,
         "request_rate": 2.03,
@@ -3105,7 +3105,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:04.190631",
+        "timestamp": "2026-10-28T03:54:37.293332",
         "cpu_usage": 9.65,
         "memory_usage": 13.85,
         "request_rate": 2.19,
@@ -3118,7 +3118,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:14.190641",
+        "timestamp": "2026-10-28T03:54:47.293339",
         "cpu_usage": 8.78,
         "memory_usage": 16.85,
         "request_rate": 1.99,
@@ -3131,7 +3131,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:24.190650",
+        "timestamp": "2026-10-28T03:54:57.293346",
         "cpu_usage": 8.01,
         "memory_usage": 15.21,
         "request_rate": 1.02,
@@ -3144,7 +3144,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:34.190660",
+        "timestamp": "2026-10-28T03:55:07.293354",
         "cpu_usage": 11.05,
         "memory_usage": 15.17,
         "request_rate": 1.94,
@@ -3157,7 +3157,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:44.190670",
+        "timestamp": "2026-10-28T03:55:17.293361",
         "cpu_usage": 8.92,
         "memory_usage": 14.54,
         "request_rate": 2.53,
@@ -3170,7 +3170,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:50:54.190679",
+        "timestamp": "2026-10-28T03:55:27.293368",
         "cpu_usage": 10.48,
         "memory_usage": 14.61,
         "request_rate": 1.66,
@@ -3183,7 +3183,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:04.190690",
+        "timestamp": "2026-10-28T03:55:37.293376",
         "cpu_usage": 11.33,
         "memory_usage": 14.16,
         "request_rate": 1.85,
@@ -3196,7 +3196,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:14.190702",
+        "timestamp": "2026-10-28T03:55:47.293383",
         "cpu_usage": 9.1,
         "memory_usage": 14.81,
         "request_rate": 1.45,
@@ -3209,7 +3209,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:24.190711",
+        "timestamp": "2026-10-28T03:55:57.293391",
         "cpu_usage": 11.69,
         "memory_usage": 14.93,
         "request_rate": 2.5,
@@ -3222,7 +3222,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:34.190721",
+        "timestamp": "2026-10-28T03:56:07.293399",
         "cpu_usage": 9.99,
         "memory_usage": 16.54,
         "request_rate": 1.98,
@@ -3235,7 +3235,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:44.190731",
+        "timestamp": "2026-10-28T03:56:17.293408",
         "cpu_usage": 10.43,
         "memory_usage": 15.09,
         "request_rate": 1.85,
@@ -3248,7 +3248,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:51:54.190742",
+        "timestamp": "2026-10-28T03:56:27.293417",
         "cpu_usage": 8.59,
         "memory_usage": 15.36,
         "request_rate": 2.74,
@@ -3261,7 +3261,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:04.190752",
+        "timestamp": "2026-10-28T03:56:37.293424",
         "cpu_usage": 7.85,
         "memory_usage": 15.92,
         "request_rate": 2.16,
@@ -3274,7 +3274,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:14.190764",
+        "timestamp": "2026-10-28T03:56:47.293431",
         "cpu_usage": 8.43,
         "memory_usage": 15.97,
         "request_rate": 1.65,
@@ -3287,7 +3287,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:24.190773",
+        "timestamp": "2026-10-28T03:56:57.293438",
         "cpu_usage": 5.75,
         "memory_usage": 15.3,
         "request_rate": 2.13,
@@ -3300,7 +3300,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:34.190782",
+        "timestamp": "2026-10-28T03:57:07.293445",
         "cpu_usage": 5.5,
         "memory_usage": 14.58,
         "request_rate": 1.83,
@@ -3313,7 +3313,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:44.190792",
+        "timestamp": "2026-10-28T03:57:17.293453",
         "cpu_usage": 7.9,
         "memory_usage": 16.89,
         "request_rate": 2.09,
@@ -3326,7 +3326,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:52:54.190801",
+        "timestamp": "2026-10-28T03:57:27.293460",
         "cpu_usage": 4.12,
         "memory_usage": 14.97,
         "request_rate": 2.03,
@@ -3339,7 +3339,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:04.190813",
+        "timestamp": "2026-10-28T03:57:37.293467",
         "cpu_usage": 7.18,
         "memory_usage": 14.97,
         "request_rate": 1.42,
@@ -3352,7 +3352,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:14.190822",
+        "timestamp": "2026-10-28T03:57:47.293474",
         "cpu_usage": 7.67,
         "memory_usage": 14.09,
         "request_rate": 2.7,
@@ -3365,7 +3365,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:24.190832",
+        "timestamp": "2026-10-28T03:57:57.293482",
         "cpu_usage": 9.58,
         "memory_usage": 14.01,
         "request_rate": 1.72,
@@ -3378,7 +3378,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:34.190842",
+        "timestamp": "2026-10-28T03:58:07.293489",
         "cpu_usage": 3.82,
         "memory_usage": 15.07,
         "request_rate": 1.47,
@@ -3391,7 +3391,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:44.190854",
+        "timestamp": "2026-10-28T03:58:17.293497",
         "cpu_usage": 8.37,
         "memory_usage": 14.22,
         "request_rate": 1.84,
@@ -3404,7 +3404,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:53:54.190864",
+        "timestamp": "2026-10-28T03:58:27.293504",
         "cpu_usage": 6.34,
         "memory_usage": 16.31,
         "request_rate": 1.2,
@@ -3417,7 +3417,7 @@
         "mode": "ai_assisted"
       },
       {
-        "timestamp": "2026-10-28T03:54:04.190874",
+        "timestamp": "2026-10-28T03:58:37.293511",
         "cpu_usage": 7.19,
         "memory_usage": 13.76,
         "request_rate": 1.34,

@@ -195,7 +195,7 @@ API Documentation will be live at:
 ### Start Streamlit Dashboard
 In a separate terminal:
 ```bash
-streamlit run dashboard/app.py --server.port 8501
+python -m streamlit run dashboard/app.py --server.port 8501
 ```
 Open `http://localhost:8501` to view the UI.
 
