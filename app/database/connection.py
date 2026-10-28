@@ -23,16 +23,28 @@ def init_database(database_url: str, create_tables: bool = True):
     if "psycopg2" not in sync_url and "sqlite" not in sync_url:
         sync_url = sync_url.replace("postgresql://", "postgresql+psycopg2://")
 
-    _engine = create_engine(sync_url, echo=False, pool_pre_ping=True, pool_size=5)
-    _SessionFactory = sessionmaker(bind=_engine, autocommit=False, autoflush=False)
+    try:
+        if "sqlite" in sync_url:
+            _engine = create_engine(sync_url, echo=False, connect_args={"check_same_thread": False})
+        else:
+            _engine = create_engine(sync_url, echo=False, pool_pre_ping=True, pool_size=5)
 
-    if create_tables:
-        try:
+        _SessionFactory = sessionmaker(bind=_engine, autocommit=False, autoflush=False)
+
+        if create_tables:
             Base.metadata.create_all(_engine)
             logger.info("Database tables created/verified successfully.")
-        except Exception as e:
-            logger.warning(f"Could not create database tables: {e}")
-            logger.info("Application will work with limited functionality without database.")
+    except Exception as e:
+        logger.warning(f"Could not connect to configured database ({e}). Falling back to local SQLite.")
+        sqlite_url = "sqlite:///./cloudopt.db"
+        _engine = create_engine(sqlite_url, echo=False, connect_args={"check_same_thread": False})
+        _SessionFactory = sessionmaker(bind=_engine, autocommit=False, autoflush=False)
+        if create_tables:
+            try:
+                Base.metadata.create_all(_engine)
+                logger.info("Local SQLite database tables created successfully.")
+            except Exception as se:
+                logger.warning(f"Could not create SQLite tables: {se}")
 
     return _engine
 
