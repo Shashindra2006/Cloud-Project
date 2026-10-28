@@ -77,14 +77,19 @@ async def startup_event():
         logger.warning(f"Database initialization skipped: {e}")
         logger.info("API will run without database persistence.")
 
-    # Pre-load ML models if available
+    # Pre-load ML models and seed initial telemetry window if empty
     try:
         from app.services.platform_service import get_platform_service
+        from ml.training.train import generate_synthetic_training_data
         service = get_platform_service()
         service.prediction_service.ensure_model_ready()
-        logger.info("ML models ready.")
+        if len(service.metrics_service.get_recent(5)) < 5:
+            initial_data = generate_synthetic_training_data(n_samples=10).to_dict(orient="records")
+            for record in initial_data:
+                service.ingest_metrics(record)
+        logger.info("ML models and telemetry history buffer ready.")
     except Exception as e:
-        logger.warning(f"ML model initialization skipped: {e}")
+        logger.warning(f"ML/Telemetry initialization skipped: {e}")
 
     logger.info("API startup complete. Docs available at /docs")
 

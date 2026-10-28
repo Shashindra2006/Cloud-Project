@@ -132,6 +132,13 @@ def api_post(endpoint: str, data: dict = None, default=None):
         response = requests.post(f"{API_URL}{endpoint}", json=data, timeout=30)
         if response.status_code in [200, 201]:
             return response.json()
+        elif response.status_code in [400, 422, 500]:
+            try:
+                err = response.json()
+                detail = err.get("detail", err.get("error", "Request failed"))
+                return {"error": detail}
+            except Exception:
+                return {"error": response.text or "Request failed"}
         return default
     except requests.exceptions.ConnectionError:
         return default
