@@ -1,0 +1,32 @@
+# Ignore heavy local virtual environments and caches
+.venv/
+venv/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Git repository
+.git/
+.gitignore
+
+# Testing and coverage caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local experiment outputs & scratch
+scratch/
+test_results/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Database files
+*.db
+*.sqlite3
+pgdata/
