@@ -285,6 +285,18 @@ if page == "📊 Overview":
     </div>
     """, unsafe_allow_html=True)
 
+    # Quick action bar
+    top_col1, top_col2, top_col3 = st.columns([3, 1, 1])
+    with top_col2:
+        if st.button("🚀 Stream Telemetry", key="stream_telemetry_top", help="Generate and ingest 30 live workload metric points"):
+            with st.spinner("Ingesting metrics..."):
+                res = api_post("/api/v1/metrics/simulate?count=30")
+                if res and "error" not in res:
+                    st.rerun()
+    with top_col3:
+        if st.button("🔄 Refresh", key="refresh_top"):
+            st.rerun()
+
     # Current metrics
     metrics = api_get("/api/v1/metrics/current")
 
@@ -302,7 +314,13 @@ if page == "📊 Overview":
         col3.metric("Request Rate", "—")
         col4.metric("Latency", "—")
         col5.metric("Error Rate", "—")
-        st.info("📡 No live metrics. Ingest metrics via the API or run the workload simulator.")
+        st.info("📡 No live metrics yet. Click '🚀 Stream Telemetry' above to ingest real-time workload data.")
+        if st.button("🚀 Stream Sample Workload Telemetry (30 Data Points)", key="btn_stream_sample_empty"):
+            with st.spinner("Streaming workload telemetry..."):
+                res = api_post("/api/v1/metrics/simulate?count=30")
+                if res and "error" not in res:
+                    st.success("Successfully ingested 30 telemetry points!")
+                    st.rerun()
 
     # Gauges
     if metrics and "message" not in metrics:

@@ -84,6 +84,17 @@ def get_metrics_history(
     return {"count": len(metrics), "metrics": metrics}
 
 
+@metrics_router.post("/simulate", status_code=201)
+def simulate_metrics(count: int = Query(default=30, ge=1, le=200)):
+    """Simulate and ingest real-time workload telemetry for live testing."""
+    from ml.training.train import generate_synthetic_training_data
+    df = generate_synthetic_training_data(n_samples=count)
+    service = get_platform_service()
+    for record in df.to_dict(orient="records"):
+        service.ingest_metrics(record)
+    return {"status": "simulated", "count": count}
+
+
 # ============ Prediction Router ============
 prediction_router = APIRouter(prefix="/api/v1/predictions", tags=["Predictions"])
 
