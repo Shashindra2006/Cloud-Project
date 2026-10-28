@@ -1,0 +1,234 @@
+{
+  "experiment_id": "exp_stable_28599d71",
+  "scenario": "stable",
+  "duration_seconds": 60,
+  "request_rate": 10.0,
+  "initial_replicas": 1,
+  "seed": 42,
+  "started_at": "2026-10-28T04:17:42.284561",
+  "completed_at": "2026-10-28T04:17:44.413190",
+  "baseline": {
+    "avg_cpu": 38.54,
+    "avg_memory": 43.9,
+    "avg_latency": 46.84,
+    "avg_error_rate": 0.44,
+    "avg_replicas": 1.0,
+    "final_replicas": 1,
+    "scaling_actions": 0,
+    "total_points": 6
+  },
+  "ai_assisted": {
+    "avg_cpu": 38.54,
+    "avg_memory": 43.9,
+    "avg_latency": 46.84,
+    "avg_error_rate": 0.44,
+    "avg_replicas": 1.0,
+    "final_replicas": 1,
+    "scaling_actions": 0,
+    "total_points": 6
+  },
+  "cost_comparison": {
+    "baseline": {
+      "total_cost": 0.0027,
+      "cpu_cost": 0.0012,
+      "memory_cost": 0.0003,
+      "instance_cost": 0.0012,
+      "avg_replicas": 1.0,
+      "runtime_hours": 0.1,
+      "cost_assumptions": {
+        "cpu_per_core_hour": 0.048,
+        "memory_per_gb_hour": 0.006,
+        "base_instance_hour": 0.0116,
+        "_comment": "Pricing based on approximate AWS t3.medium on-demand rates (us-east-1). Update these values to reflect your target cloud provider and region. See docs/COST_MODEL.md for details."
+      },
+      "mode": "baseline"
+    },
+    "ai_assisted": {
+      "total_cost": 0.0027,
+      "cpu_cost": 0.0012,
+      "memory_cost": 0.0003,
+      "instance_cost": 0.0012,
+      "avg_replicas": 1.0,
+      "runtime_hours": 0.1,
+      "cost_assumptions": {
+        "cpu_per_core_hour": 0.048,
+        "memory_per_gb_hour": 0.006,
+        "base_instance_hour": 0.0116,
+        "_comment": "Pricing based on approximate AWS t3.medium on-demand rates (us-east-1). Update these values to reflect your target cloud provider and region. See docs/COST_MODEL.md for details."
+      },
+      "mode": "ai_assisted"
+    },
+    "absolute_savings": 0.0,
+    "savings_percentage": 0.0,
+    "ai_costs_more": false,
+    "performance_comparison": {
+      "baseline_avg_latency": 46.84,
+      "ai_avg_latency": 46.84,
+      "baseline_avg_error_rate": 0.44,
+      "ai_avg_error_rate": 0.44,
+      "baseline_avg_cpu": 38.54,
+      "ai_avg_cpu": 38.54
+    },
+    "note": "Costs are estimates based on configured pricing assumptions. Local Kubernetes costs do not represent actual cloud bills. See docs/COST_MODEL.md for details."
+  },
+  "baseline_timeseries": [
+    {
+      "timestamp": "2026-10-28T04:17:42.284767",
+      "cpu_usage": 36.49,
+      "memory_usage": 44.72,
+      "request_rate": 10.65,
+      "latency_ms": 57.62,
+      "error_rate": 0.48,
+      "scenario": "stable",
+      "elapsed_seconds": 0.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "baseline"
+    },
+    {
+      "timestamp": "2026-10-28T04:17:52.284786",
+      "cpu_usage": 35.93,
+      "memory_usage": 48.08,
+      "request_rate": 10.77,
+      "latency_ms": 47.65,
+      "error_rate": 0.55,
+      "scenario": "stable",
+      "elapsed_seconds": 10.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "baseline"
+    },
+    {
+      "timestamp": "2026-10-28T04:18:02.284797",
+      "cpu_usage": 36.7,
+      "memory_usage": 43.78,
+      "request_rate": 10.24,
+      "latency_ms": 40.43,
+      "error_rate": 0.33,
+      "scenario": "stable",
+      "elapsed_seconds": 20.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "baseline"
+    },
+    {
+      "timestamp": "2026-10-28T04:18:12.284806",
+      "cpu_usage": 37.52,
+      "memory_usage": 42.33,
+      "request_rate": 10.31,
+      "latency_ms": 45.46,
+      "error_rate": 0.36,
+      "scenario": "stable",
+      "elapsed_seconds": 30.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "baseline"
+    },
+    {
+      "timestamp": "2026-10-28T04:18:22.284816",
+      "cpu_usage": 44.26,
+      "memory_usage": 43.44,
+      "request_rate": 10.07,
+      "latency_ms": 42.88,
+      "error_rate": 0.45,
+      "scenario": "stable",
+      "elapsed_seconds": 40.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "baseline"
+    },
+    {
+      "timestamp": "2026-10-28T04:18:32.284825",
+      "cpu_usage": 40.31,
+      "memory_usage": 41.03,
+      "request_rate": 10.38,
+      "latency_ms": 47.0,
+      "error_rate": 0.47,
+      "scenario": "stable",
+      "elapsed_seconds": 50.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "baseline"
+    }
+  ],
+  "ai_timeseries": [
+    {
+      "timestamp": "2026-10-28T04:17:42.284767",
+      "cpu_usage": 36.49,
+      "memory_usage": 44.72,
+      "request_rate": 10.65,
+      "latency_ms": 57.62,
+      "error_rate": 0.48,
+      "scenario": "stable",
+      "elapsed_seconds": 0.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "ai_assisted"
+    },
+    {
+      "timestamp": "2026-10-28T04:17:52.284786",
+      "cpu_usage": 35.93,
+      "memory_usage": 48.08,
+      "request_rate": 10.77,
+      "latency_ms": 47.65,
+      "error_rate": 0.55,
+      "scenario": "stable",
+      "elapsed_seconds": 10.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "ai_assisted"
+    },
+    {
+      "timestamp": "2026-10-28T04:18:02.284797",
+      "cpu_usage": 36.7,
+      "memory_usage": 43.78,
+      "request_rate": 10.24,
+      "latency_ms": 40.43,
+      "error_rate": 0.33,
+      "scenario": "stable",
+      "elapsed_seconds": 20.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "ai_assisted"
+    },
+    {
+      "timestamp": "2026-10-28T04:18:12.284806",
+      "cpu_usage": 37.52,
+      "memory_usage": 42.33,
+      "request_rate": 10.31,
+      "latency_ms": 45.46,
+      "error_rate": 0.36,
+      "scenario": "stable",
+      "elapsed_seconds": 30.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "ai_assisted"
+    },
+    {
+      "timestamp": "2026-10-28T04:18:22.284816",
+      "cpu_usage": 44.26,
+      "memory_usage": 43.44,
+      "request_rate": 10.07,
+      "latency_ms": 42.88,
+      "error_rate": 0.45,
+      "scenario": "stable",
+      "elapsed_seconds": 40.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "ai_assisted"
+    },
+    {
+      "timestamp": "2026-10-28T04:18:32.284825",
+      "cpu_usage": 40.31,
+      "memory_usage": 41.03,
+      "request_rate": 10.38,
+      "latency_ms": 47.0,
+      "error_rate": 0.47,
+      "scenario": "stable",
+      "elapsed_seconds": 50.0,
+      "replica_count": 1,
+      "new_replicas": 1,
+      "mode": "ai_assisted"
+    }
+  ]
+}
