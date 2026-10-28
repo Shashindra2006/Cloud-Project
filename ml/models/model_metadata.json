@@ -1,6 +1,6 @@
 {
   "model_name": "random_forest",
-  "training_timestamp": "2026-10-28 04:17:44.086776",
+  "training_timestamp": "2026-10-28 04:35:06.070506",
   "training_samples": 500,
   "window_size": 5,
   "metrics": {

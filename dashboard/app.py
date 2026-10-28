@@ -147,7 +147,13 @@ def api_post(endpoint: str, data: dict = None, default=None):
 
 
 def load_experiment_files():
-    """Load experiment results from disk."""
+    """Load experiment results from API or disk."""
+    # 1. Try API first
+    api_res = api_get("/api/v1/experiments/results")
+    if api_res and isinstance(api_res, list) and len(api_res) > 0:
+        return api_res
+
+    # 2. Fall back to local disk
     results = []
     if EXPERIMENTS_DIR.exists():
         for f in sorted(EXPERIMENTS_DIR.glob("*.json")):

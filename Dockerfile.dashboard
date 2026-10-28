@@ -20,8 +20,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
     httpx \
     python-dotenv
 
-# Copy dashboard and necessary modules
+# Copy dashboard, experiment data, and configuration
 COPY dashboard/ ./dashboard/
+COPY experiments/ ./experiments/
 COPY .env.example ./.env
 
 EXPOSE 8501
