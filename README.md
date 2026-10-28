@@ -221,7 +221,69 @@ docker-compose down
 
 ---
 
-## 10. API Documentation
+## 10. Running with Kubernetes & Helm
+
+The platform provides a complete **production-grade Helm chart** (`helm/cloud-optimizer`) and raw Kubernetes manifests (`k8s/`) including Deployments, Services, ConfigMaps, Secrets, and a HorizontalPodAutoscaler (HPA).
+
+### Method A: Automated One-Click Deploy (Minikube)
+Run the included PowerShell automation script:
+```powershell
+.\deploy-helm.ps1
+```
+This automatically verifies Minikube, builds the Docker images directly into Minikube's local cache (no Docker Hub registry required), lints the Helm chart, and installs the release.
+
+### Method B: Manual Step-by-Step Helm Commands
+
+1. **Start Minikube:**
+   ```powershell
+   minikube start --driver=docker
+   ```
+
+2. **Build Container Images Directly in Minikube:**
+   ```powershell
+   minikube image build -t cloudopt-api:latest -f Dockerfile .
+   minikube image build -t cloudopt-dashboard:latest -f Dockerfile.dashboard .
+   ```
+
+3. **Validate & Lint the Helm Chart:**
+   ```powershell
+   helm lint ./helm/cloud-optimizer
+   ```
+
+4. **Install / Deploy the Chart:**
+   ```powershell
+   helm upgrade --install cloud-optimizer ./helm/cloud-optimizer `
+     --set api.image.pullPolicy=Never `
+     --set dashboard.image.pullPolicy=Never
+   ```
+
+5. **Verify Pods & HorizontalPodAutoscaler (HPA):**
+   ```powershell
+   kubectl get pods -l app.kubernetes.io/instance=cloud-optimizer
+   kubectl get svc -l app.kubernetes.io/instance=cloud-optimizer
+   kubectl get hpa
+   ```
+
+6. **Access the Dashboard & API in Your Browser:**
+   - **Streamlit Dashboard:**
+     ```powershell
+     kubectl port-forward svc/cloud-optimizer-dashboard 8501:8501
+     ```
+     Open `http://localhost:8501`
+   - **FastAPI Swagger API:**
+     ```powershell
+     kubectl port-forward svc/cloud-optimizer-api 8000:8000
+     ```
+     Open `http://localhost:8000/docs`
+
+7. **To Uninstall / Clean Up:**
+   ```powershell
+   helm uninstall cloud-optimizer
+   ```
+
+---
+
+## 11. API Documentation
 
 | Method | Endpoint | Description |
 |---|---|---|

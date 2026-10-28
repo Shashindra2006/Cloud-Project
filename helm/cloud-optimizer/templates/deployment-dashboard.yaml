@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cloud-optimizer.fullname" . }}-dashboard
+  labels:
+    {{- include "cloud-optimizer.labels" . | nindent 4 }}
+    app.kubernetes.io/component: analytics-dashboard
+spec:
+  replicas: {{ .Values.dashboard.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "cloud-optimizer.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: analytics-dashboard
+  template:
+    metadata:
+      labels:
+        {{- include "cloud-optimizer.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: analytics-dashboard
+    spec:
+      containers:
+        - name: dashboard
+          image: "{{ .Values.dashboard.image.repository }}:{{ .Values.dashboard.image.tag }}"
+          imagePullPolicy: {{ .Values.dashboard.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.dashboard.service.targetPort }}
+              name: http
+          env:
+            - name: API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "cloud-optimizer.fullname" . }}-config
+                  key: API_URL
+            - name: DASHBOARD_HOST
+              value: "0.0.0.0"
+            - name: DASHBOARD_PORT
+              value: "8501"
+          resources:
+            {{- toYaml .Values.dashboard.resources | nindent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 15
+            timeoutSeconds: 3

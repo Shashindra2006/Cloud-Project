@@ -1,0 +1,14 @@
+apiVersion: v2
+name: cloud-optimizer
+description: Helm Chart for AI-Powered Cloud Cost & Resource Optimization Platform
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - cloud-cost-optimizer
+  - autoscaling
+  - machine-learning
+  - kubernetes
+maintainers:
+  - name: Academic Review Team
+    email: student@university.edu

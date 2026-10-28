@@ -1,0 +1,25 @@
+---
+# Source: cloud-optimizer/templates/service-api.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloud-optimizer-api
+  labels:
+    helm.sh/chart: cloud-optimizer-1.0.0
+    app.kubernetes.io/name: cloud-optimizer
+    app.kubernetes.io/instance: cloud-optimizer
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cloud-optimizer
+    app.kubernetes.io/component: backend-api
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8000
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: cloud-optimizer
+    app.kubernetes.io/instance: cloud-optimizer
+    app.kubernetes.io/component: backend-api
+

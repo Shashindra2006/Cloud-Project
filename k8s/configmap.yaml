@@ -1,0 +1,26 @@
+---
+# Source: cloud-optimizer/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloud-optimizer-config
+  labels:
+    helm.sh/chart: cloud-optimizer-1.0.0
+    app.kubernetes.io/name: cloud-optimizer
+    app.kubernetes.io/instance: cloud-optimizer
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cloud-optimizer
+data:
+  API_HOST: "0.0.0.0"
+  API_PORT: "8000"
+  API_DEBUG: "false"
+  OPTIMIZER_DRY_RUN: "true"
+  OPTIMIZER_MIN_REPLICAS: "1"
+  OPTIMIZER_MAX_REPLICAS: "10"
+  OPTIMIZER_COOLDOWN_SECONDS: "120"
+  OPTIMIZER_SAFETY_MARGIN: "0.2"
+  POSTGRES_HOST: cloud-optimizer-db
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "cloudopt"
+  API_URL: "http://cloud-optimizer-api:8000"
+

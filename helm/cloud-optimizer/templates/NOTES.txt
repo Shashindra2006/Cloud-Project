@@ -1,0 +1,28 @@
+================================================================================
+  AI-Powered Cloud Cost & Resource Optimization Platform
+================================================================================
+
+Congratulations! The Cloud Optimizer stack has been deployed via Helm.
+
+1. Check Pod and Service Status:
+   kubectl get pods -l app.kubernetes.io/instance={{ .Release.Name }}
+   kubectl get svc -l app.kubernetes.io/instance={{ .Release.Name }}
+
+2. Access the Streamlit Dashboard:
+{{- if eq .Values.dashboard.service.type "NodePort" }}
+   - If using Minikube:
+     minikube service {{ include "cloud-optimizer.fullname" . }}-dashboard
+   - Or port-forward directly:
+     kubectl port-forward svc/{{ include "cloud-optimizer.fullname" . }}-dashboard 8501:8501
+     Then open: http://localhost:8501
+{{- else }}
+   kubectl port-forward svc/{{ include "cloud-optimizer.fullname" . }}-dashboard 8501:8501
+   Then open: http://localhost:8501
+{{- end }}
+
+3. Access the FastAPI Backend & Swagger Docs:
+   kubectl port-forward svc/{{ include "cloud-optimizer.fullname" . }}-api 8000:8000
+   Then open: http://localhost:8000/docs
+
+4. Verify HorizontalPodAutoscaler (HPA):
+   kubectl get hpa {{ include "cloud-optimizer.fullname" . }}-api-hpa

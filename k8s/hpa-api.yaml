@@ -1,0 +1,34 @@
+---
+# Source: cloud-optimizer/templates/hpa-api.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: cloud-optimizer-api-hpa
+  labels:
+    helm.sh/chart: cloud-optimizer-1.0.0
+    app.kubernetes.io/name: cloud-optimizer
+    app.kubernetes.io/instance: cloud-optimizer
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cloud-optimizer
+    app.kubernetes.io/component: backend-api
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cloud-optimizer-api
+  minReplicas: 1
+  maxReplicas: 8
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+

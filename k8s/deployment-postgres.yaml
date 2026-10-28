@@ -1,0 +1,74 @@
+---
+# Source: cloud-optimizer/templates/deployment-postgres.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-optimizer-db
+  labels:
+    helm.sh/chart: cloud-optimizer-1.0.0
+    app.kubernetes.io/name: cloud-optimizer
+    app.kubernetes.io/instance: cloud-optimizer
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cloud-optimizer
+    app.kubernetes.io/component: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cloud-optimizer
+      app.kubernetes.io/instance: cloud-optimizer
+      app.kubernetes.io/component: database
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: cloud-optimizer
+        app.kubernetes.io/instance: cloud-optimizer
+        app.kubernetes.io/component: database
+    spec:
+      containers:
+        - name: postgresql
+          image: "postgres:15-alpine"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+              name: postgresql
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: cloud-optimizer-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cloud-optimizer-secret
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: cloud-optimizer-config
+                  key: POSTGRES_DB
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - exec pg_isready -U cloudopt -d cloudopt
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - exec pg_isready -U cloudopt -d cloudopt
+            initialDelaySeconds: 15
+            periodSeconds: 20
+

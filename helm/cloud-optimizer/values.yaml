@@ -1,0 +1,97 @@
+# Default values for cloud-optimizer Helm Chart.
+# This is a YAML-formatted file.
+
+global:
+  environment: production
+
+# PostgreSQL Database Service
+postgresql:
+  enabled: true
+  image:
+    repository: postgres
+    tag: "15-alpine"
+    pullPolicy: IfNotPresent
+  service:
+    port: 5432
+  auth:
+    username: cloudopt
+    password: cloudopt_pass
+    database: cloudopt
+  persistence:
+    enabled: false
+    size: 2Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+# FastAPI Backend & ML Engine
+api:
+  replicaCount: 2
+  image:
+    repository: cloudopt-api
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+    nodePort: 30080
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+  env:
+    API_DEBUG: "false"
+    OPTIMIZER_DRY_RUN: "true"
+    OPTIMIZER_MIN_REPLICAS: "1"
+    OPTIMIZER_MAX_REPLICAS: "10"
+    OPTIMIZER_COOLDOWN_SECONDS: "120"
+    OPTIMIZER_SAFETY_MARGIN: "0.2"
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 8
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
+
+# Streamlit Analytics Dashboard
+dashboard:
+  replicaCount: 1
+  image:
+    repository: cloudopt-dashboard
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8501
+    targetPort: 8501
+    nodePort: 30501
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+# Ingress configuration
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: cloud-optimizer.local
+      paths:
+        - path: /
+          pathType: Prefix
+          service: dashboard
+        - path: /api
+          pathType: Prefix
+          service: api
