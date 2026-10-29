@@ -102,7 +102,7 @@ class OptimizationEngine:
         Returns:
             ScalingRecommendation with action and rationale
         """
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now(datetime.timezone.utc)
 
         # Check cooldown
         cooldown_active = False

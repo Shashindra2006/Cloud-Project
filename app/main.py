@@ -6,6 +6,7 @@ Entry point for the backend API server.
 import logging
 import os
 
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -27,42 +28,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Create FastAPI app
-app = FastAPI(
-    title="AI-Powered Cloud Cost & Resource Optimization Platform",
-    description=(
-        "Platform for monitoring workloads, predicting demand, detecting anomalies, "
-        "recommending resource allocations, and comparing costs between conventional "
-        "reactive scaling and AI-assisted optimization."
-    ),
-    version="1.0.0",
-    docs_url="/docs",
-    redoc_url="/redoc",
-    openapi_url="/openapi.json",
-)
 
-# CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Register routers
-app.include_router(health_router)
-app.include_router(metrics_router)
-app.include_router(prediction_router)
-app.include_router(anomaly_router)
-app.include_router(recommendation_router)
-app.include_router(cost_router)
-app.include_router(experiment_router)
-app.include_router(training_router)
-
-
-@app.on_event("startup")
-async def startup_event():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     """Initialize services on startup."""
     logger.info("Starting Cloud Cost Optimizer API...")
 
@@ -92,6 +60,42 @@ async def startup_event():
         logger.warning(f"ML/Telemetry initialization skipped: {e}")
 
     logger.info("API startup complete. Docs available at /docs")
+    yield
+
+
+# Create FastAPI app
+app = FastAPI(
+    title="AI-Powered Cloud Cost & Resource Optimization Platform",
+    description=(
+        "Platform for monitoring workloads, predicting demand, detecting anomalies, "
+        "recommending resource allocations, and comparing costs between conventional "
+        "reactive scaling and AI-assisted optimization."
+    ),
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json",
+    lifespan=lifespan,
+)
+
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Register routers
+app.include_router(health_router)
+app.include_router(metrics_router)
+app.include_router(prediction_router)
+app.include_router(anomaly_router)
+app.include_router(recommendation_router)
+app.include_router(cost_router)
+app.include_router(experiment_router)
+app.include_router(training_router)
 
 
 @app.get("/")

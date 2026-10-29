@@ -8,13 +8,15 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 Base = declarative_base()
 
+_utcnow = lambda: datetime.datetime.now(datetime.timezone.utc)
+
 
 class MetricRecord(Base):
     """Stores time-series workload and resource metrics."""
     __tablename__ = "metric_records"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False, index=True)
+    timestamp = Column(DateTime, default=_utcnow, nullable=False, index=True)
     cpu_usage = Column(Float, nullable=False, doc="CPU usage percentage 0-100")
     memory_usage = Column(Float, nullable=False, doc="Memory usage percentage 0-100")
     request_rate = Column(Float, nullable=False, doc="Requests per second")
@@ -33,7 +35,7 @@ class PredictionRecord(Base):
     __tablename__ = "prediction_records"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False, index=True)
+    timestamp = Column(DateTime, default=_utcnow, nullable=False, index=True)
     predicted_cpu = Column(Float, nullable=False)
     predicted_memory = Column(Float, nullable=False)
     predicted_request_rate = Column(Float, nullable=False)
@@ -51,7 +53,7 @@ class AnomalyRecord(Base):
     __tablename__ = "anomaly_records"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False, index=True)
+    timestamp = Column(DateTime, default=_utcnow, nullable=False, index=True)
     anomaly_score = Column(Float, nullable=False, doc="Anomaly score from model")
     is_anomaly = Column(Boolean, nullable=False, default=False)
     severity = Column(String(20), nullable=False, default="low", doc="low/medium/high/critical")
@@ -65,7 +67,7 @@ class RecommendationRecord(Base):
     __tablename__ = "recommendation_records"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False, index=True)
+    timestamp = Column(DateTime, default=_utcnow, nullable=False, index=True)
     action = Column(String(20), nullable=False, doc="scale_up/scale_down/no_change")
     current_replicas = Column(Integer, nullable=False)
     recommended_replicas = Column(Integer, nullable=False)
@@ -99,7 +101,7 @@ class CostRecord(Base):
     __tablename__ = "cost_records"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False, index=True)
+    timestamp = Column(DateTime, default=_utcnow, nullable=False, index=True)
     experiment_id = Column(String(100), nullable=True, index=True)
     mode = Column(String(20), nullable=False, doc="baseline or ai_assisted")
     total_cost = Column(Float, nullable=False)

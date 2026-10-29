@@ -42,7 +42,7 @@ class PredictionService:
     def add_observation(self, metrics: Dict[str, float]):
         """Add a new observation to the history buffer."""
         obs = {col: metrics.get(col, 0.0) for col in FEATURE_COLS}
-        obs["timestamp"] = metrics.get("timestamp", datetime.datetime.utcnow())
+        obs["timestamp"] = metrics.get("timestamp", datetime.datetime.now(datetime.timezone.utc))
         self._history_buffer.append(obs)
 
         # Trim buffer
@@ -82,14 +82,14 @@ class PredictionService:
 
         if "timestamp" not in df.columns:
             df["timestamp"] = pd.date_range(
-                end=datetime.datetime.utcnow(),
+                end=datetime.datetime.now(datetime.timezone.utc),
                 periods=len(df),
                 freq="1min",
             )
 
         prediction = self.predictor.predict(df)
         prediction["horizon_minutes"] = horizon_minutes
-        prediction["timestamp"] = datetime.datetime.utcnow().isoformat()
+        prediction["timestamp"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
         prediction["model_metrics"] = self.predictor.metrics
 
         return prediction

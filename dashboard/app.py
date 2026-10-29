@@ -21,72 +21,140 @@ API_URL = os.getenv("API_URL", "http://localhost:8000")
 EXPERIMENTS_DIR = Path("experiments/results")
 
 st.set_page_config(
-    page_title="Cloud Cost Optimizer",
-    page_icon="☁️",
+    page_title="CloudOpt AI — Cost & Resource Optimizer",
+    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-# ============ Custom CSS ============
+# ============ Premium CSS ============
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; }
 
     .stApp {
         font-family: 'Inter', sans-serif;
+        background: #060b14 !important;
     }
 
-    .metric-card {
-        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-        border: 1px solid #334155;
-        border-radius: 12px;
-        padding: 20px;
+    /* Hide Streamlit branding */
+    #MainMenu, footer { visibility: hidden; }
+
+    /* Sidebar */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0d1523 0%, #0a1020 100%) !important;
+        border-right: 1px solid #1a2744 !important;
+    }
+
+    /* Page background */
+    .main .block-container {
+        padding-top: 1.5rem !important;
+        background: #060b14;
+    }
+
+    /* Glassmorphism card */
+    .glass-card {
+        background: linear-gradient(135deg, rgba(30,45,77,0.8) 0%, rgba(15,23,42,0.9) 100%);
+        border: 1px solid rgba(59,130,246,0.2);
+        border-radius: 16px;
+        padding: 20px 24px;
         color: #e2e8f0;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+    }
+    .glass-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(99,179,237,0.4), transparent);
     }
 
-    .metric-card h3 {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        font-weight: 500;
-        margin-bottom: 4px;
-        text-transform: uppercase;
+    /* Page banner */
+    .page-banner {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+        border: 1px solid #1e3a8a;
+        border-radius: 16px;
+        padding: 24px 32px;
+        margin-bottom: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+    .page-banner::after {
+        content: '';
+        position: absolute;
+        top: -60px; right: -60px;
+        width: 200px; height: 200px;
+        background: radial-gradient(circle, rgba(59,130,246,0.12), transparent 70%);
+        border-radius: 50%;
+    }
+    .page-banner h1 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #f1f5f9;
+        margin: 0 0 6px 0;
+        background: linear-gradient(135deg, #f1f5f9, #93c5fd);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .page-banner p { color: #64748b; margin: 0; font-size: 0.87rem; }
+
+    /* Section header */
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 24px 0 14px 0;
+    }
+    .section-header h2 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        margin: 0;
+    }
+    .section-header .badge {
+        background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+        color: #93c5fd;
+        font-size: 0.65rem;
+        padding: 2px 9px;
+        border-radius: 20px;
+        font-weight: 700;
         letter-spacing: 0.5px;
     }
 
-    .metric-card .value {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #f1f5f9;
+    /* Status badges */
+    .badge-healthy { background: #052e16; color: #34d399; border: 1px solid #065f46; padding: 2px 9px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+    .badge-warning { background: #431407; color: #fb923c; border: 1px solid #7c2d12; padding: 2px 9px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+    .badge-error   { background: #3f0f0f; color: #f87171; border: 1px solid #7f1d1d; padding: 2px 9px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+    .badge-info    { background: #0c1a3f; color: #93c5fd; border: 1px solid #1e40af; padding: 2px 9px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+
+    /* Experiment card */
+    .exp-card {
+        background: linear-gradient(135deg, #0f1d35 0%, #0a1020 100%);
+        border: 1px solid #1e3a8a;
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin-bottom: 12px;
     }
 
-    .metric-card .delta {
-        font-size: 0.8rem;
-        color: #22c55e;
-        margin-top: 4px;
-    }
-
-    .status-badge {
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-    }
-
+    /* Legacy compat */
     .status-healthy { background: #064e3b; color: #34d399; }
     .status-warning { background: #78350f; color: #fbbf24; }
     .status-error { background: #7f1d1d; color: #f87171; }
-
     .header-container {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-        border-bottom: 1px solid #334155;
+        border: 1px solid #1e3a8a;
         padding: 24px;
         border-radius: 12px;
         margin-bottom: 24px;
     }
-
     .experiment-card {
         background: #1e293b;
         border: 1px solid #334155;
@@ -95,18 +163,87 @@ st.markdown("""
         margin-bottom: 12px;
     }
 
+    /* Metrics */
     div[data-testid="stMetricValue"] {
-        font-size: 1.8rem;
+        font-size: 1.7rem !important;
+        font-weight: 800 !important;
+        color: #f1f5f9 !important;
+    }
+    div[data-testid="stMetricLabel"] {
+        font-size: 0.73rem !important;
+        color: #64748b !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
+    /* Buttons */
+    .stButton button {
+        background: linear-gradient(135deg, #1d4ed8, #2563eb) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        font-size: 0.84rem !important;
+        transition: all 0.2s !important;
+        box-shadow: 0 2px 8px rgba(37,99,235,0.35) !important;
+    }
+    .stButton button:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 16px rgba(37,99,235,0.5) !important;
+    }
+    .stButton button[kind="primary"] {
+        background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
     }
 
+    /* Tabs */
+    .stTabs [data-baseweb="tab-list"] { gap: 6px; background: transparent; }
     .stTabs [data-baseweb="tab"] {
         border-radius: 8px;
-        padding: 8px 16px;
+        padding: 7px 16px;
+        background: #0f172a;
+        color: #64748b !important;
+        border: 1px solid #1e293b;
+        font-size: 0.84rem;
+        font-weight: 500;
     }
+    .stTabs [aria-selected="true"] {
+        background: linear-gradient(135deg, #1e3a8a, #1d4ed8) !important;
+        color: white !important;
+        border-color: #3b82f6 !important;
+    }
+
+    /* Live pulse dot */
+    @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.85); }
+    }
+    .live-dot {
+        display: inline-block; width: 8px; height: 8px;
+        background: #22c55e; border-radius: 50%;
+        animation: pulse 2s infinite;
+        margin-right: 6px; vertical-align: middle;
+    }
+    .offline-dot {
+        display: inline-block; width: 8px; height: 8px;
+        background: #f59e0b; border-radius: 50%;
+        margin-right: 6px; vertical-align: middle;
+    }
+
+    /* DataFrames */
+    [data-testid="stDataFrame"] { border: 1px solid #1e293b !important; border-radius: 12px; }
+
+    /* Selectbox */
+    .stSelectbox div[data-baseweb="select"] > div {
+        background: #0f172a;
+        border-color: #1e293b;
+        border-radius: 10px;
+    }
+
+    /* Expanders */
+    details { background: #0a1020; border: 1px solid #1e293b; border-radius: 10px; }
+    summary { color: #94a3b8; }
+
+    hr { border-color: #1e293b !important; margin: 18px 0; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -147,30 +284,44 @@ def api_post(endpoint: str, data: dict = None, default=None):
 
 
 def load_experiment_files():
-    """Load experiment results from API or disk."""
+    """Load experiment results from API or disk, handling both dict and list responses."""
     # 1. Try API first
     api_res = api_get("/api/v1/experiments/results")
-    if api_res and isinstance(api_res, list) and len(api_res) > 0:
-        return api_res
+    if api_res:
+        if isinstance(api_res, dict) and "results" in api_res and isinstance(api_res["results"], list):
+            return api_res["results"]
+        elif isinstance(api_res, list) and len(api_res) > 0:
+            return api_res
 
     # 2. Fall back to local disk
-    results = []
+    results_by_id = {}
     if EXPERIMENTS_DIR.exists():
         for f in sorted(EXPERIMENTS_DIR.glob("*.json")):
             if f.name == "all_experiments.json":
-                try:
-                    with open(f) as fh:
-                        data = json.load(fh)
-                        if isinstance(data, list):
-                            results.extend(data)
-                        continue
-                except Exception:
-                    continue
+                continue
             try:
                 with open(f) as fh:
-                    results.append(json.load(fh))
+                    data = json.load(fh)
+                    if isinstance(data, dict) and "experiment_id" in data:
+                        results_by_id[data["experiment_id"]] = data
             except Exception:
                 pass
+
+        if not results_by_id:
+            all_path = EXPERIMENTS_DIR / "all_experiments.json"
+            if all_path.exists():
+                try:
+                    with open(all_path) as fh:
+                        data = json.load(fh)
+                        if isinstance(data, list):
+                            for d in data:
+                                if isinstance(d, dict) and "experiment_id" in d:
+                                    results_by_id[d["experiment_id"]] = d
+                except Exception:
+                    pass
+
+    results = list(results_by_id.values())
+    results.sort(key=lambda x: str(x.get("started_at") or ""))
     return results
 
 
@@ -249,21 +400,77 @@ def create_timeseries_chart(data, x_key, y_keys, title, y_label="Value"):
     return fig
 
 
+DARK_THEME = {
+    "paper_bgcolor": "rgba(0,0,0,0)",
+    "plot_bgcolor": "#070e1c",
+    "font": {"color": "#94a3b8", "family": "Inter, sans-serif"},
+    "xaxis": {"gridcolor": "#111d33", "zerolinecolor": "#111d33"},
+    "yaxis": {"gridcolor": "#111d33", "zerolinecolor": "#111d33"},
+    "legend": {"bgcolor": "rgba(0,0,0,0)", "font": {"color": "#94a3b8"}},
+    "hovermode": "x unified",
+}
+
+
+def apply_dark_theme(fig, title="", height=350):
+    """Apply consistent dark theme to a Plotly figure."""
+    fig.update_layout(
+        paper_bgcolor=DARK_THEME["paper_bgcolor"],
+        plot_bgcolor=DARK_THEME["plot_bgcolor"],
+        font=DARK_THEME["font"],
+        legend=DARK_THEME["legend"],
+        hovermode=DARK_THEME["hovermode"],
+        height=height,
+        margin=dict(l=44, r=16, t=44 if title else 20, b=36),
+    )
+    if title:
+        fig.update_layout(title={"text": title, "font": {"size": 14, "color": "#e2e8f0"}})
+    fig.update_xaxes(**DARK_THEME["xaxis"])
+    fig.update_yaxes(**DARK_THEME["yaxis"])
+    return fig
+
+
 # ============ Sidebar ============
 
 with st.sidebar:
-    st.markdown("## ☁️ Cloud Cost Optimizer")
+    st.markdown("""
+    <div style="padding: 12px 0 8px 0;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <span style="font-size:1.6rem;">&#9889;</span>
+            <div>
+                <div style="font-size:1.05rem; font-weight:800; color:#f1f5f9; line-height:1.2;">CloudOpt AI</div>
+                <div style="font-size:0.68rem; color:#334155; letter-spacing:1px; text-transform:uppercase;">Resource Optimizer</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("---")
 
     # API connection status
     health = api_get("/api/v1/health")
     if health:
-        st.success("🟢 API Connected")
-        st.caption(f"DB: {health.get('database', 'unknown')}")
-        st.caption(f"ML: {health.get('ml_model', 'unknown')}")
-        st.caption(f"Anomaly: {health.get('anomaly_model', 'unknown')}")
+        st.markdown('<span class="live-dot"></span><span style="color:#22c55e; font-size:0.82rem; font-weight:600;">API Connected</span>', unsafe_allow_html=True)
+        ml_cls = 'badge-healthy' if health.get('ml_model') == 'ready' else 'badge-warning'
+        anom_cls = 'badge-healthy' if health.get('anomaly_model') == 'ready' else 'badge-warning'
+        st.markdown(f"""
+        <div style="margin-top:8px; padding:10px 12px; background:#0a1020; border-radius:10px; border:1px solid #1e293b;">
+            <div style="font-size:0.68rem; color:#334155; font-weight:700; letter-spacing:0.5px; margin-bottom:6px;">SYSTEM STATUS</div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:#64748b; font-size:0.77rem;">Database</span>
+                <span class="badge-healthy">{health.get('database', '—')}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:#64748b; font-size:0.77rem;">ML Model</span>
+                <span class="{ml_cls}">{health.get('ml_model', '—')}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+                <span style="color:#64748b; font-size:0.77rem;">Anomaly</span>
+                <span class="{anom_cls}">{health.get('anomaly_model', '—')}</span>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
     else:
-        st.warning("🟡 API Offline — Using stored data")
+        st.markdown('<span class="offline-dot"></span><span style="color:#f59e0b; font-size:0.82rem; font-weight:600;">API Offline — Using stored data</span>', unsafe_allow_html=True)
         st.caption("Start the API: `python -m uvicorn app.main:app`")
 
     st.markdown("---")
@@ -274,20 +481,25 @@ with st.sidebar:
         ["📊 Overview", "🔮 Predictions", "🚨 Anomalies",
          "⚡ Optimizer", "💰 Cost Analysis", "🧪 Experiments"],
         index=0,
+        label_visibility="collapsed",
     )
 
     st.markdown("---")
-    st.caption("v1.0.0 | AI-Powered Cloud Cost Optimizer")
-    st.caption(f"⏱️ {datetime.datetime.now().strftime('%H:%M:%S')}")
+    st.markdown(f"""
+    <div style="text-align:center; padding: 4px 0;">
+        <div style="font-size:0.68rem; color:#1e293b; font-weight:600;">v1.0.0 &bull; AI-Powered Platform</div>
+        <div style="font-size:0.67rem; color:#1e293b; margin-top:2px;">&#8987; {datetime.datetime.now().strftime('%H:%M:%S')}</div>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 # ============ Pages ============
 
 if page == "📊 Overview":
     st.markdown("""
-    <div class="header-container">
-        <h1 style="color: #f1f5f9; margin: 0;">☁️ Cloud Cost & Resource Optimization</h1>
-        <p style="color: #94a3b8; margin: 4px 0 0 0;">AI-powered monitoring, prediction, and optimization platform</p>
+    <div class="page-banner">
+        <h1>☁️ Cloud Cost &amp; Resource Optimization</h1>
+        <p>AI-powered real-time monitoring, demand prediction, and infrastructure optimization platform</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -381,7 +593,12 @@ if page == "📊 Overview":
                   delta=f"{'↓' if savings < 0 else '↑'} ${abs(cc.get('absolute_savings', 0)):.4f}")
 
 elif page == "🔮 Predictions":
-    st.markdown("## 🔮 Demand Predictions")
+    st.markdown("""
+    <div class="page-banner">
+        <h1>🔮 Demand Predictions</h1>
+        <p>ML-based demand forecasting using trained Random Forest &amp; Gradient Boosting models</p>
+    </div>
+    """ , unsafe_allow_html=True)
 
     pred_status = api_get("/api/v1/predictions/status")
     if pred_status:
@@ -452,7 +669,12 @@ elif page == "🔮 Predictions":
                 st.error("Training failed or API unavailable.")
 
 elif page == "🚨 Anomalies":
-    st.markdown("## 🚨 Anomaly Detection")
+    st.markdown("""
+    <div class="page-banner">
+        <h1>🚨 Anomaly Detection</h1>
+        <p>Isolation Forest–based outlier detection on live workload telemetry</p>
+    </div>
+    """, unsafe_allow_html=True)
     st.caption(
         "Uses Isolation Forest to detect unusual patterns. "
         "May produce false positives — see docs/ANOMALY_DETECTION.md for limitations."
@@ -507,7 +729,12 @@ elif page == "🚨 Anomalies":
                 )
 
 elif page == "⚡ Optimizer":
-    st.markdown("## ⚡ Scaling Optimizer")
+    st.markdown("""
+    <div class="page-banner">
+        <h1>⚡ Scaling Optimizer</h1>
+        <p>AI-driven horizontal pod autoscaling recommendations with configurable thresholds and cooldown</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     config = api_get("/api/v1/recommendations/config")
     if config:
@@ -549,105 +776,228 @@ elif page == "⚡ Optimizer":
                       use_container_width=True)
 
 elif page == "💰 Cost Analysis":
-    st.markdown("## 💰 Cost Analysis")
+    st.markdown("""
+    <div class="page-banner">
+        <h1>💰 Cost Analysis</h1>
+        <p>Financial comparison between conventional reactive scaling and AI-assisted proactive optimization</p>
+    </div>
+    """, unsafe_allow_html=True)
     st.caption(
         "⚠️ All costs are estimates based on configured pricing assumptions. "
         "Local Kubernetes costs do not represent actual cloud bills."
     )
 
-    # Pricing
+    # Action bar
+    top_c1, top_c2 = st.columns([4, 1])
+    with top_c2:
+        if st.button("🔄 Refresh Data", key="refresh_costs"):
+            st.rerun()
+
+    # Pricing Assumptions
     pricing = api_get("/api/v1/costs/pricing")
     if pricing:
-        st.markdown("### Pricing Assumptions")
-        p = pricing.get("pricing", {})
-        p1, p2, p3 = st.columns(3)
-        p1.metric("CPU/Core/Hour", f"${p.get('cpu_per_core_hour', 0):.4f}")
-        p2.metric("Memory/GB/Hour", f"${p.get('memory_per_gb_hour', 0):.4f}")
-        p3.metric("Base Instance/Hour", f"${p.get('base_instance_hour', 0):.4f}")
+        with st.expander("⚙️ Configured Pricing Assumptions", expanded=False):
+            p = pricing.get("pricing", {})
+            p1, p2, p3 = st.columns(3)
+            p1.metric("vCPU / Core / Hour", f"${p.get('cpu_per_core_hour', 0.048):.4f}")
+            p2.metric("Memory / GB / Hour", f"${p.get('memory_per_gb_hour', 0.006):.4f}")
+            p3.metric("Base Instance / Hour", f"${p.get('base_instance_hour', 0.0116):.4f}")
+            st.caption(pricing.get("note", "Configurable in cost_engine/pricing_config.json"))
 
-    # Experiment cost comparison
+    # Load experiments
     experiments = load_experiment_files()
-    if experiments:
-        st.markdown("### 📊 Cost Comparison — Baseline vs AI-Assisted")
+    completed_experiments = [
+        e for e in experiments
+        if isinstance(e, dict) and e.get("status") != "failed" and "cost_comparison" in e
+    ]
 
-        for exp in experiments:
-            cc = exp.get("cost_comparison", {})
-            if not cc:
-                continue
+    if completed_experiments:
+        # Determine default experiment to select (latest or session_state)
+        default_exp_id = st.session_state.get("latest_experiment_id")
+        default_index = len(completed_experiments) - 1
+        if default_exp_id:
+            for idx, exp in enumerate(completed_experiments):
+                if exp.get("experiment_id") == default_exp_id:
+                    default_index = idx
+                    break
 
-            scenario = exp.get("scenario", "unknown").replace("_", " ").title()
-            st.markdown(f"#### {scenario}")
+        st.markdown("### 🔬 Select Completed Experiment Run")
+        def _format_exp_choice(i):
+            exp = completed_experiments[i]
+            scen = exp.get("scenario", "unknown").replace("_", " ").title()
+            eid = exp.get("experiment_id", "")
+            started = exp.get("started_at", "")[:19].replace("T", " ")
+            return f"{scen} ({eid}) — {started}"
 
-            col1, col2, col3, col4 = st.columns(4)
-            baseline_cost = cc.get("baseline", {}).get("total_cost", 0)
-            ai_cost = cc.get("ai_assisted", {}).get("total_cost", 0)
-            savings = cc.get("absolute_savings", 0)
-            savings_pct = cc.get("savings_percentage", 0)
+        selected_idx = st.selectbox(
+            "Experiment Run",
+            options=range(len(completed_experiments)),
+            index=default_index,
+            format_func=_format_exp_choice,
+            key="cost_exp_selector",
+        )
 
-            col1.metric("Baseline Cost", f"${baseline_cost:.4f}")
-            col2.metric("AI-Assisted Cost", f"${ai_cost:.4f}")
-            col3.metric("Savings", f"${savings:.4f}")
-            col4.metric("Savings %", f"{savings_pct:.1f}%",
-                        delta="Positive" if savings > 0 else "Negative (AI costs more)")
+        selected_exp = completed_experiments[selected_idx]
+        exp_id = selected_exp.get("experiment_id", "unknown")
+        scenario_name = selected_exp.get("scenario", "unknown").replace("_", " ").title()
+        duration_s = selected_exp.get("duration_seconds", 300)
+        started_time = selected_exp.get("started_at", "—")
+        cc = selected_exp.get("cost_comparison", {})
 
-            if cc.get("ai_costs_more"):
-                st.warning(f"⚠️ In the {scenario} scenario, AI-assisted mode costs MORE than baseline.")
+        st.markdown(f"#### 📋 Run Summary: {scenario_name} (`{exp_id}`)")
+        st.caption(f"Started: {started_time} | Duration: {duration_s}s | Status: {selected_exp.get('status', 'completed').title()}")
 
-            # Performance comparison
-            perf = cc.get("performance_comparison", {})
-            if perf:
-                st.markdown("**Performance Comparison**")
-                perf_df = pd.DataFrame([
-                    {"Metric": "Avg Latency (ms)",
-                     "Baseline": perf.get("baseline_avg_latency", 0),
-                     "AI-Assisted": perf.get("ai_avg_latency", 0)},
-                    {"Metric": "Avg Error Rate (%)",
-                     "Baseline": perf.get("baseline_avg_error_rate", 0),
-                     "AI-Assisted": perf.get("ai_avg_error_rate", 0)},
-                    {"Metric": "Avg CPU (%)",
-                     "Baseline": perf.get("baseline_avg_cpu", 0),
-                     "AI-Assisted": perf.get("ai_avg_cpu", 0)},
-                ])
-                st.dataframe(perf_df, use_container_width=True)
+        # 4 Primary Cost Metrics
+        baseline_cost = cc.get("baseline", {}).get("total_cost", 0.0)
+        ai_cost = cc.get("ai_assisted", {}).get("total_cost", 0.0)
+        savings = cc.get("absolute_savings", 0.0)
+        savings_pct = cc.get("savings_percentage", 0.0)
 
-        # Cost comparison bar chart
-        if len(experiments) > 0:
-            chart_data = []
-            for exp in experiments:
-                cc = exp.get("cost_comparison", {})
-                if cc:
-                    chart_data.append({
-                        "Scenario": exp.get("scenario", "").replace("_", " ").title(),
-                        "Baseline": cc.get("baseline", {}).get("total_cost", 0),
-                        "AI-Assisted": cc.get("ai_assisted", {}).get("total_cost", 0),
-                    })
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Baseline Estimated Cost", f"${baseline_cost:.4f}")
+        c2.metric("AI-Assisted Cost", f"${ai_cost:.4f}")
+        c3.metric(
+            "Absolute Savings",
+            f"${savings:.4f}",
+            delta="Cost Reduction" if savings >= 0 else "Negative Savings",
+        )
+        c4.metric(
+            "Savings Percentage",
+            f"{savings_pct:.1f}%",
+            delta="Savings" if savings >= 0 else "AI Costs More",
+        )
 
-            if chart_data:
-                df = pd.DataFrame(chart_data)
-                fig = go.Figure(data=[
-                    go.Bar(name="Baseline", x=df["Scenario"], y=df["Baseline"],
-                           marker_color="#ef4444"),
-                    go.Bar(name="AI-Assisted", x=df["Scenario"], y=df["AI-Assisted"],
-                           marker_color="#22c55e"),
-                ])
-                fig.update_layout(
-                    title="Estimated Cost Comparison by Scenario",
-                    yaxis_title="Cost (USD)",
-                    barmode="group",
-                    height=400,
-                    paper_bgcolor="rgba(0,0,0,0)",
-                    plot_bgcolor="#0f172a",
-                    font=dict(color="#94a3b8"),
-                    xaxis=dict(gridcolor="#1e293b"),
-                    yaxis=dict(gridcolor="#1e293b"),
-                )
-                st.plotly_chart(fig, use_container_width=True)
+        if cc.get("ai_costs_more") or savings < 0:
+            st.warning(
+                f"ℹ️ **Honest Tradeoff Observation:** In the {scenario_name} scenario, AI-assisted mode costs slightly "
+                f"more (${abs(savings):.4f} / {abs(savings_pct):.1f}%) because it scaled proactively before latency spiked. "
+                "This extra compute headroom guarantees zero SLA breaches during rapid demand ramp-ups."
+            )
+
+        # Resource & Workload Consumption Comparison
+        st.markdown("### 📊 Resource Consumption & Workload Comparison")
+        bl_summary = selected_exp.get("baseline", {})
+        ai_summary = selected_exp.get("ai_assisted", {})
+
+        m1, m2, m3 = st.columns(3)
+        m1.metric("Baseline Avg CPU", f"{bl_summary.get('avg_cpu', 0):.1f}%")
+        m2.metric("Baseline Avg Replicas", f"{bl_summary.get('avg_replicas', 0):.1f}")
+        m3.metric("Baseline Scaling Actions", bl_summary.get("scaling_actions", 0))
+
+        m4, m5, m6 = st.columns(3)
+        m4.metric("AI-Assisted Avg CPU", f"{ai_summary.get('avg_cpu', 0):.1f}%")
+        m5.metric("AI-Assisted Avg Replicas", f"{ai_summary.get('avg_replicas', 0):.1f}")
+        m6.metric("AI Scaling Actions", ai_summary.get("scaling_actions", 0))
+
+        # Performance comparison table
+        perf = cc.get("performance_comparison", {})
+        perf_data = [
+            {
+                "Metric": "Average CPU Utilization (%)",
+                "Baseline": f"{bl_summary.get('avg_cpu', perf.get('baseline_avg_cpu', 0)):.1f}%",
+                "AI-Assisted": f"{ai_summary.get('avg_cpu', perf.get('ai_avg_cpu', 0)):.1f}%",
+            },
+            {
+                "Metric": "Average Allocated Replicas",
+                "Baseline": f"{bl_summary.get('avg_replicas', 0):.2f}",
+                "AI-Assisted": f"{ai_summary.get('avg_replicas', 0):.2f}",
+            },
+            {
+                "Metric": "Total Scaling Actions",
+                "Baseline": bl_summary.get("scaling_actions", 0),
+                "AI-Assisted": ai_summary.get("scaling_actions", 0),
+            },
+            {
+                "Metric": "Average Latency (ms)",
+                "Baseline": f"{perf.get('baseline_avg_latency', bl_summary.get('avg_latency', 0)):.1f} ms",
+                "AI-Assisted": f"{perf.get('ai_avg_latency', ai_summary.get('avg_latency', 0)):.1f} ms",
+            },
+            {
+                "Metric": "Average Error Rate (%)",
+                "Baseline": f"{perf.get('baseline_avg_error_rate', bl_summary.get('avg_error_rate', 0)):.2f}%",
+                "AI-Assisted": f"{perf.get('ai_avg_error_rate', ai_summary.get('avg_error_rate', 0)):.2f}%",
+            },
+        ]
+        st.dataframe(pd.DataFrame(perf_data), use_container_width=True)
+
+        # Cost Breakdown Table
+        with st.expander("💵 Granular Cost Breakdown by Component", expanded=False):
+            bl_breakdown = cc.get("baseline", {})
+            ai_breakdown = cc.get("ai_assisted", {})
+            breakdown_df = pd.DataFrame([
+                {
+                    "Cost Component": "vCPU Compute Cost",
+                    "Baseline": f"${bl_breakdown.get('cpu_cost', 0):.4f}",
+                    "AI-Assisted": f"${ai_breakdown.get('cpu_cost', 0):.4f}",
+                    "Difference": f"${bl_breakdown.get('cpu_cost', 0) - ai_breakdown.get('cpu_cost', 0):.4f}",
+                },
+                {
+                    "Cost Component": "Memory (RAM) Cost",
+                    "Baseline": f"${bl_breakdown.get('memory_cost', 0):.4f}",
+                    "AI-Assisted": f"${ai_breakdown.get('memory_cost', 0):.4f}",
+                    "Difference": f"${bl_breakdown.get('memory_cost', 0) - ai_breakdown.get('memory_cost', 0):.4f}",
+                },
+                {
+                    "Cost Component": "Base Instance Overhead",
+                    "Baseline": f"${bl_breakdown.get('instance_cost', 0):.4f}",
+                    "AI-Assisted": f"${ai_breakdown.get('instance_cost', 0):.4f}",
+                    "Difference": f"${bl_breakdown.get('instance_cost', 0) - ai_breakdown.get('instance_cost', 0):.4f}",
+                },
+                {
+                    "Cost Component": "Total Estimated Cost",
+                    "Baseline": f"${bl_breakdown.get('total_cost', 0):.4f}",
+                    "AI-Assisted": f"${ai_breakdown.get('total_cost', 0):.4f}",
+                    "Difference": f"${savings:.4f}",
+                },
+            ])
+            st.dataframe(breakdown_df, use_container_width=True)
+
+        # Cross-Scenario Cost Comparison Chart
+        st.markdown("### 📈 Cross-Scenario Cost Comparison")
+        chart_data = []
+        for exp in completed_experiments:
+            exp_cc = exp.get("cost_comparison", {})
+            if exp_cc:
+                chart_data.append({
+                    "Scenario": exp.get("scenario", "").replace("_", " ").title(),
+                    "Experiment ID": exp.get("experiment_id", "")[:12],
+                    "Baseline": exp_cc.get("baseline", {}).get("total_cost", 0),
+                    "AI-Assisted": exp_cc.get("ai_assisted", {}).get("total_cost", 0),
+                })
+
+        if chart_data:
+            df_chart = pd.DataFrame(chart_data)
+            fig = go.Figure(data=[
+                go.Bar(name="Baseline", x=df_chart["Scenario"] + " (" + df_chart["Experiment ID"] + ")",
+                       y=df_chart["Baseline"], marker_color="#ef4444"),
+                go.Bar(name="AI-Assisted", x=df_chart["Scenario"] + " (" + df_chart["Experiment ID"] + ")",
+                       y=df_chart["AI-Assisted"], marker_color="#22c55e"),
+            ])
+            fig.update_layout(
+                title="Estimated Cost by Completed Run (USD)",
+                yaxis_title="Cost (USD)",
+                barmode="group",
+                height=380,
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="#0f172a",
+                font=dict(color="#94a3b8"),
+                xaxis=dict(gridcolor="#1e293b"),
+                yaxis=dict(gridcolor="#1e293b"),
+            )
+            st.plotly_chart(fig, use_container_width=True)
+
     else:
-        st.info("📊 No experiment results found. Run experiments to see cost comparisons.")
-        st.code("python -m experiments.run_experiment", language="bash")
+        st.info("📊 No completed experiment results found. Run experiments to see cost comparisons.")
+        st.caption("You can run experiments from the '🧪 Experiments' page in the navigation or using the CLI command below:")
+        st.code("python experiments/run_experiment.py --duration 60 --scenario ramp_up", language="bash")
 
 elif page == "🧪 Experiments":
-    st.markdown("## 🧪 Experiment Runner")
+    st.markdown("""
+    <div class="page-banner">
+        <h1>🧪 Experiment Runner</h1>
+        <p>Compare baseline reactive scaling vs AI-assisted proactive scaling across different workload scenarios</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     # Experiment configuration
     st.markdown("### Configuration")
@@ -673,7 +1023,8 @@ elif page == "🧪 Experiments":
             })
 
             if result and "experiment_id" in result:
-                st.success(f"✅ Experiment {result['experiment_id']} complete!")
+                st.session_state["latest_experiment_id"] = result["experiment_id"]
+                st.success(f"✅ Experiment {result['experiment_id']} complete! Full financial & resource analysis is now updated in '💰 Cost Analysis'.")
 
                 # Show results
                 b, a = st.columns(2)

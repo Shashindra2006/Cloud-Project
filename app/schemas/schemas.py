@@ -162,7 +162,7 @@ class HealthResponse(BaseModel):
     database: str = "unknown"
     ml_model: str = "unknown"
     anomaly_model: str = "unknown"
-    timestamp: datetime.datetime = Field(default_factory=datetime.datetime.utcnow)
+    timestamp: datetime.datetime = Field(default_factory=lambda: datetime.datetime.now(datetime.timezone.utc))
 
 
 # ============ Workload Schemas ============

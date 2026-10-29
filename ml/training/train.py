@@ -267,7 +267,7 @@ class DemandPredictor:
         self.model = results[best_name]["model"]
         self.model_name = best_name
         self.is_trained = True
-        self.training_timestamp = datetime.datetime.utcnow()
+        self.training_timestamp = datetime.datetime.now(datetime.timezone.utc)
         self.training_samples = len(data)
 
         self.metrics = {

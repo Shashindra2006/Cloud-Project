@@ -108,7 +108,7 @@ class AnomalyDetector:
         self.model.fit(X_scaled)
 
         self.is_trained = True
-        self.training_timestamp = datetime.datetime.utcnow()
+        self.training_timestamp = datetime.datetime.now(datetime.timezone.utc)
         self.training_samples = len(data)
         self._features_used = available_features
 
@@ -196,7 +196,7 @@ class AnomalyDetector:
         description = self._generate_description(is_anomaly, severity, affected_metrics, metrics)
 
         return {
-            "timestamp": datetime.datetime.utcnow().isoformat(),
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             "anomaly_score": round(score, 4),
             "is_anomaly": is_anomaly,
             "severity": severity,

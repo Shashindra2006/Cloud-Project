@@ -1,4 +1,8 @@
-# Python
+# ==============================================================================
+# Git Ignore Configuration - AI-Powered Cloud Cost & Resource Optimizer Platform
+# ==============================================================================
+
+# Python bytecode & caching
 __pycache__/
 *.py[cod]
 *$py.class
@@ -13,69 +17,76 @@ build/
 .venv/
 venv/
 ENV/
+env/
 
-# Environment files
+# Environment files (exclude live secrets, keep example template)
 .env
 .env.local
 .env.production
+!.env.example
 
-# IDE
+# IDEs & Text Editors
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# Operating System files
 .DS_Store
 Thumbs.db
+ehthumbs.db
+desktop.ini
 
-# Database
+# Database files & local volume mounts
 *.db
 *.sqlite3
 pgdata/
 
-# ML artifacts
-ml/models/*.joblib
-ml/models/*.pkl
-ml/models/*.h5
+# Machine Learning models & scalers
+# General rule: ignore arbitrary large training dumps, but explicitly KEEP
+# pre-trained models in ml/models/ so the repository works out of the box on any machine.
 *.joblib
 *.pkl
+*.h5
+!ml/models/*.joblib
+!ml/models/*.pkl
+!ml/models/*.json
+!ml/models/.gitkeep
 
-# Experiment data (keep sample aggregated result for demo)
+# Experiment results
+# Ignore individual test/simulation run artifacts, but KEEP aggregated demo data
+experiments/results/exp_*.json
 !experiments/results/all_experiments.json
 
-# Docker
+# Docker & Containerization
 docker-compose.override.yml
 
-# Kubernetes
+# Kubernetes & Helm
 *.kubeconfig
 
-# Secrets and credentials
+# Secrets & certificates
 secrets/
 *.pem
 *.key
 *.crt
 *.p12
 
-# Build output
+# Build artifacts
 *.tar.gz
 *.whl
 
-# Logs
+# Logs & temp files
 *.log
 logs/
 
-# Coverage
+# Testing, QA & Coverage
 .coverage
 htmlcov/
 coverage.xml
-
-# pytest
 .pytest_cache/
-
-# mypy
 .mypy_cache/
+.ruff_cache/
 
-# Jupyter
+# Jupyter Notebooks
 .ipynb_checkpoints/

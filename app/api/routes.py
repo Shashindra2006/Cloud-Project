@@ -44,7 +44,7 @@ def health_check():
 @health_router.get("/ready")
 def readiness_check():
     """Readiness check endpoint."""
-    return {"status": "ready", "timestamp": datetime.datetime.utcnow().isoformat()}
+    return {"status": "ready", "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()}
 
 
 # ============ Metrics Router ============
@@ -56,7 +56,7 @@ def ingest_metric(metric: MetricCreate):
     """Ingest a new metric observation."""
     service = get_platform_service()
     data = metric.model_dump()
-    data["timestamp"] = datetime.datetime.utcnow()
+    data["timestamp"] = datetime.datetime.now(datetime.timezone.utc)
     result = service.ingest_metrics(data)
     return {"status": "ingested", "timestamp": result["timestamp"].isoformat()}
 
@@ -191,7 +191,7 @@ cost_router = APIRouter(prefix="/api/v1/costs", tags=["Cost Estimation"])
 
 
 @cost_router.get("/estimate")
-def estimate_cost(mode: str = Query(default="baseline", regex="^(baseline|ai_assisted)$")):
+def estimate_cost(mode: str = Query(default="baseline", pattern="^(baseline|ai_assisted)$")):
     """Estimate cost based on collected metrics."""
     service = get_platform_service()
     result = service.estimate_cost(mode=mode)
@@ -203,23 +203,54 @@ def estimate_cost(mode: str = Query(default="baseline", regex="^(baseline|ai_ass
 
 
 @cost_router.get("/compare")
-def compare_costs():
+def compare_costs(experiment_id: Optional[str] = Query(default=None)):
     """Compare baseline vs AI-assisted costs from experiment data."""
-    service = get_platform_service()
-
-    # Load from experiment results if available
-    from experiments.run_experiment import load_experiment_results
+    from experiments.run_experiment import load_experiment_results, load_single_experiment
     try:
-        results = load_experiment_results()
-        if results:
-            return results
-    except Exception:
-        pass
+        if experiment_id:
+            exp = load_single_experiment(experiment_id)
+            if not exp:
+                raise HTTPException(status_code=404, detail=f"Experiment '{experiment_id}' not found")
+            return {
+                "experiment_id": exp.get("experiment_id"),
+                "scenario": exp.get("scenario"),
+                "status": exp.get("status", "completed"),
+                "started_at": exp.get("started_at"),
+                "completed_at": exp.get("completed_at"),
+                "baseline": exp.get("baseline"),
+                "ai_assisted": exp.get("ai_assisted"),
+                "cost_comparison": exp.get("cost_comparison"),
+            }
 
-    return {
-        "message": "No experiment results available. Run experiments first.",
-        "instructions": "Use POST /api/v1/experiments/run or python -m experiments.run_experiment",
-    }
+        results = load_experiment_results()
+        completed = [e for e in results if e.get("status") != "failed" and "cost_comparison" in e]
+
+        if completed:
+            latest = completed[-1]
+            return {
+                "experiment_id": latest.get("experiment_id"),
+                "scenario": latest.get("scenario"),
+                "status": latest.get("status", "completed"),
+                "started_at": latest.get("started_at"),
+                "completed_at": latest.get("completed_at"),
+                "baseline": latest.get("baseline"),
+                "ai_assisted": latest.get("ai_assisted"),
+                "cost_comparison": latest.get("cost_comparison"),
+                "count": len(completed),
+                "experiments": completed,
+            }
+
+        return {
+            "message": "No experiment results found. Run experiments to see cost comparisons.",
+            "instructions": "Use POST /api/v1/experiments/run or the Experiments page in the dashboard",
+            "count": 0,
+            "experiments": [],
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error accessing experiment storage: {e}")
+        raise HTTPException(status_code=500, detail=f"Error accessing experiment storage: {str(e)}")
 
 
 @cost_router.get("/pricing")
@@ -260,9 +291,28 @@ def get_experiment_results():
     from experiments.run_experiment import load_experiment_results
     try:
         results = load_experiment_results()
-        return {"count": len(results) if isinstance(results, list) else 1, "results": results}
+        return {"count": len(results), "results": results}
+    except HTTPException:
+        raise
     except Exception as e:
-        return {"count": 0, "results": [], "message": str(e)}
+        logger.error(f"Error retrieving experiment results: {e}")
+        raise HTTPException(status_code=500, detail=f"Database or storage error: {str(e)}")
+
+
+@experiment_router.get("/{experiment_id}")
+def get_experiment_by_id(experiment_id: str):
+    """Get a specific experiment result by its unique ID."""
+    from experiments.run_experiment import load_single_experiment
+    try:
+        result = load_single_experiment(experiment_id)
+        if not result:
+            raise HTTPException(status_code=404, detail=f"Experiment '{experiment_id}' not found")
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error loading experiment {experiment_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Database or storage error: {str(e)}")
 
 
 # ============ Training Router ============

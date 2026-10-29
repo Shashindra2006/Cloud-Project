@@ -27,7 +27,7 @@ class MetricsService:
     def add_metrics(self, metrics: Dict[str, Any]) -> Dict[str, Any]:
         """Add a metrics observation."""
         if "timestamp" not in metrics:
-            metrics["timestamp"] = datetime.datetime.utcnow()
+            metrics["timestamp"] = datetime.datetime.now(datetime.timezone.utc)
 
         self._metrics_buffer.append(metrics)
         if len(self._metrics_buffer) > self._max_buffer:

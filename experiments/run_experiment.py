@@ -96,7 +96,7 @@ class WorkloadGenerator:
             latency = max(1, latency)
             error_rate = max(0, min(100, error_rate))
 
-            timestamp = datetime.datetime.utcnow() + datetime.timedelta(seconds=t)
+            timestamp = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(seconds=t)
             metrics.append({
                 "timestamp": timestamp,
                 "cpu_usage": round(cpu, 2),
@@ -263,76 +263,102 @@ def run_single_experiment(
     Tests both baseline and AI-assisted modes with identical workloads.
     """
     experiment_id = f"exp_{scenario}_{uuid.uuid4().hex[:8]}"
-    started_at = datetime.datetime.utcnow()
+    started_at = datetime.datetime.now(datetime.timezone.utc)
 
     logger.info(f"Starting experiment {experiment_id}: {scenario} for {duration_seconds}s")
 
-    # Generate workload (same for both modes)
-    generator = WorkloadGenerator(seed=seed)
-    workload = generator.generate_scenario(
-        scenario=scenario,
-        duration_seconds=duration_seconds,
-        base_request_rate=request_rate,
-    )
+    try:
+        # Generate workload (same for both modes)
+        generator = WorkloadGenerator(seed=seed)
+        workload = generator.generate_scenario(
+            scenario=scenario,
+            duration_seconds=duration_seconds,
+            base_request_rate=request_rate,
+        )
 
-    # Prepare ML models
-    predictor = DemandPredictor()
-    training_data = generate_synthetic_training_data(n_samples=500, seed=seed)
-    predictor.train(training_data)
+        # Prepare ML models
+        predictor = DemandPredictor()
+        training_data = generate_synthetic_training_data(n_samples=500, seed=seed)
+        predictor.train(training_data)
 
-    optimizer = OptimizationEngine(ScalingConfig(
-        dry_run=True,
-        cooldown_seconds=20,
-        safety_margin=0.15,
-    ))
+        optimizer = OptimizationEngine(ScalingConfig(
+            dry_run=True,
+            cooldown_seconds=20,
+            safety_margin=0.15,
+        ))
 
-    # Run baseline
-    baseline_result = simulate_experiment_mode(
-        workload, "baseline", initial_replicas=initial_replicas,
-    )
+        # Run baseline
+        baseline_result = simulate_experiment_mode(
+            workload, "baseline", initial_replicas=initial_replicas,
+        )
 
-    # Run AI-assisted (same workload)
-    ai_result = simulate_experiment_mode(
-        workload, "ai_assisted",
-        predictor=predictor, optimizer=optimizer,
-        initial_replicas=initial_replicas,
-    )
+        # Run AI-assisted (same workload)
+        ai_result = simulate_experiment_mode(
+            workload, "ai_assisted",
+            predictor=predictor, optimizer=optimizer,
+            initial_replicas=initial_replicas,
+        )
 
-    # Calculate costs
-    calculator = CostCalculator()
-    cost_comparison = calculator.compare_costs(
-        baseline_result["metrics"],
-        ai_result["metrics"],
-    )
+        # Calculate costs using the exact step interval
+        calculator = CostCalculator()
+        interval_seconds = float(duration_seconds / len(workload)) if workload else 10.0
+        cost_comparison = calculator.compare_costs(
+            baseline_result["metrics"],
+            ai_result["metrics"],
+            interval_seconds=interval_seconds,
+        )
 
-    completed_at = datetime.datetime.utcnow()
+        completed_at = datetime.datetime.now(datetime.timezone.utc)
 
-    result = {
-        "experiment_id": experiment_id,
-        "scenario": scenario,
-        "duration_seconds": duration_seconds,
-        "request_rate": request_rate,
-        "initial_replicas": initial_replicas,
-        "seed": seed,
-        "started_at": started_at.isoformat(),
-        "completed_at": completed_at.isoformat(),
-        "baseline": baseline_result["summary"],
-        "ai_assisted": ai_result["summary"],
-        "cost_comparison": cost_comparison,
-        "baseline_timeseries": baseline_result["metrics"],
-        "ai_timeseries": ai_result["metrics"],
-    }
+        result = {
+            "experiment_id": experiment_id,
+            "scenario": scenario,
+            "status": "completed",
+            "duration_seconds": duration_seconds,
+            "request_rate": request_rate,
+            "initial_replicas": initial_replicas,
+            "seed": seed,
+            "started_at": started_at.isoformat(),
+            "completed_at": completed_at.isoformat(),
+            "baseline": baseline_result["summary"],
+            "ai_assisted": ai_result["summary"],
+            "cost_comparison": cost_comparison,
+            "baseline_timeseries": baseline_result["metrics"],
+            "ai_timeseries": ai_result["metrics"],
+        }
 
-    # Save results
-    _save_experiment(result)
+        # Save results to disk and database
+        _save_experiment(result)
 
-    logger.info(
-        f"Experiment {experiment_id} complete. "
-        f"Savings: ${cost_comparison['absolute_savings']:.4f} "
-        f"({cost_comparison['savings_percentage']:.1f}%)"
-    )
+        logger.info(
+            f"Experiment {experiment_id} complete. "
+            f"Savings: ${cost_comparison['absolute_savings']:.4f} "
+            f"({cost_comparison['savings_percentage']:.1f}%)"
+        )
 
-    return result
+        return result
+    except Exception as e:
+        logger.error(f"Experiment {experiment_id} failed: {e}")
+        completed_at = datetime.datetime.now(datetime.timezone.utc)
+        failed_result = {
+            "experiment_id": experiment_id,
+            "scenario": scenario,
+            "status": "failed",
+            "duration_seconds": duration_seconds,
+            "request_rate": request_rate,
+            "initial_replicas": initial_replicas,
+            "seed": seed,
+            "started_at": started_at.isoformat(),
+            "completed_at": completed_at.isoformat(),
+            "error": str(e),
+            "baseline": {},
+            "ai_assisted": {},
+            "cost_comparison": {},
+            "baseline_timeseries": [],
+            "ai_timeseries": [],
+        }
+        _save_experiment(failed_result)
+        raise
 
 
 def run_all_experiments(seed: int = 42) -> List[Dict[str, Any]]:
@@ -362,8 +388,103 @@ def run_all_experiments(seed: int = 42) -> List[Dict[str, Any]]:
     return results
 
 
+def _save_experiment_to_db(result: Dict[str, Any]):
+    """Persist experiment result to database if configured."""
+    try:
+        from app.database.connection import get_db_session, get_engine_instance, init_database
+        from app.core.config import get_settings
+        from app.models.database import ExperimentRecord, CostRecord
+
+        if get_engine_instance() is None:
+            settings = get_settings()
+            init_database(settings.database_url, create_tables=True)
+
+        with get_db_session() as session:
+            existing = session.query(ExperimentRecord).filter_by(experiment_id=result["experiment_id"]).first()
+
+            def _parse_ts(val):
+                if not val:
+                    return datetime.datetime.now(datetime.timezone.utc)
+                if isinstance(val, str):
+                    try:
+                        return datetime.datetime.fromisoformat(val)
+                    except Exception:
+                        return datetime.datetime.now(datetime.timezone.utc)
+                return val
+
+            started_at = _parse_ts(result.get("started_at"))
+            completed_at = _parse_ts(result.get("completed_at"))
+
+            config_data = {
+                "request_rate": result.get("request_rate"),
+                "initial_replicas": result.get("initial_replicas"),
+                "seed": result.get("seed"),
+            }
+            results_data = {
+                "baseline": result.get("baseline"),
+                "ai_assisted": result.get("ai_assisted"),
+                "cost_comparison": result.get("cost_comparison"),
+                "baseline_timeseries": result.get("baseline_timeseries"),
+                "ai_timeseries": result.get("ai_timeseries"),
+                "error": result.get("error"),
+            }
+
+            if existing:
+                existing.completed_at = completed_at
+                existing.status = result.get("status", "completed")
+                existing.results = results_data
+                existing.config = config_data
+            else:
+                record = ExperimentRecord(
+                    experiment_id=result["experiment_id"],
+                    started_at=started_at,
+                    completed_at=completed_at,
+                    scenario=result.get("scenario", "unknown"),
+                    mode="comparison",
+                    duration_seconds=result.get("duration_seconds", 300),
+                    config=config_data,
+                    results=results_data,
+                    status=result.get("status", "completed"),
+                )
+                session.add(record)
+
+            # Persist cost records if available
+            cc = result.get("cost_comparison", {})
+            if cc and isinstance(cc, dict):
+                bl_cost = cc.get("baseline", {})
+                ai_cost = cc.get("ai_assisted", {})
+                if bl_cost and isinstance(bl_cost, dict) and "total_cost" in bl_cost:
+                    session.add(CostRecord(
+                        experiment_id=result["experiment_id"],
+                        mode="baseline",
+                        total_cost=float(bl_cost.get("total_cost", 0.0)),
+                        cpu_cost=float(bl_cost.get("cpu_cost", 0.0)),
+                        memory_cost=float(bl_cost.get("memory_cost", 0.0)),
+                        instance_cost=float(bl_cost.get("instance_cost", 0.0)),
+                        avg_replicas=float(bl_cost.get("avg_replicas", 0.0)),
+                        runtime_hours=float(bl_cost.get("runtime_hours", 0.0)),
+                        cost_assumptions=bl_cost.get("cost_assumptions"),
+                    ))
+                if ai_cost and isinstance(ai_cost, dict) and "total_cost" in ai_cost:
+                    session.add(CostRecord(
+                        experiment_id=result["experiment_id"],
+                        mode="ai_assisted",
+                        total_cost=float(ai_cost.get("total_cost", 0.0)),
+                        cpu_cost=float(ai_cost.get("cpu_cost", 0.0)),
+                        memory_cost=float(ai_cost.get("memory_cost", 0.0)),
+                        instance_cost=float(ai_cost.get("instance_cost", 0.0)),
+                        avg_replicas=float(ai_cost.get("avg_replicas", 0.0)),
+                        runtime_hours=float(ai_cost.get("runtime_hours", 0.0)),
+                        cost_assumptions=ai_cost.get("cost_assumptions"),
+                    ))
+
+        logger.info(f"Experiment {result['experiment_id']} persisted to database.")
+    except Exception as e:
+        logger.debug(f"Database persistence skipped ({e}). Disk persistence is active.")
+
+
 def _save_experiment(result: Dict[str, Any]):
-    """Save experiment result to disk."""
+    """Save experiment result to disk and database."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
     filename = f"{result['experiment_id']}.json"
@@ -372,24 +493,103 @@ def _save_experiment(result: Dict[str, Any]):
     with open(filepath, "w") as f:
         json.dump(result, f, indent=2, default=str)
 
-    logger.info(f"Experiment saved to {filepath}")
+    logger.info(f"Experiment saved to disk: {filepath}")
+
+    # Also persist to database
+    _save_experiment_to_db(result)
+
+
+def _record_to_dict(rec) -> Dict[str, Any]:
+    """Convert ExperimentRecord SQLAlchemy model to standard experiment dict."""
+    config = rec.config or {}
+    results = rec.results or {}
+    return {
+        "experiment_id": rec.experiment_id,
+        "scenario": rec.scenario,
+        "duration_seconds": rec.duration_seconds,
+        "request_rate": config.get("request_rate", 10.0),
+        "initial_replicas": config.get("initial_replicas", 1),
+        "seed": config.get("seed", 42),
+        "status": rec.status or "completed",
+        "started_at": rec.started_at.isoformat() if rec.started_at else None,
+        "completed_at": rec.completed_at.isoformat() if rec.completed_at else None,
+        "baseline": results.get("baseline", {}),
+        "ai_assisted": results.get("ai_assisted", {}),
+        "cost_comparison": results.get("cost_comparison", {}),
+        "baseline_timeseries": results.get("baseline_timeseries", []),
+        "ai_timeseries": results.get("ai_timeseries", []),
+        "error": results.get("error"),
+    }
+
+
+def load_single_experiment(experiment_id: str) -> Optional[Dict[str, Any]]:
+    """Load a specific experiment by ID from database or disk."""
+    # 1. Try DB first
+    try:
+        from app.database.connection import get_db_session, get_engine_instance
+        from app.models.database import ExperimentRecord
+        if get_engine_instance() is not None:
+            with get_db_session() as session:
+                rec = session.query(ExperimentRecord).filter_by(experiment_id=experiment_id).first()
+                if rec:
+                    return _record_to_dict(rec)
+    except Exception as e:
+        logger.debug(f"DB load for {experiment_id} skipped: {e}")
+
+    # 2. Try disk
+    filepath = RESULTS_DIR / f"{experiment_id}.json"
+    if filepath.exists():
+        try:
+            with open(filepath) as fh:
+                return json.load(fh)
+        except Exception as e:
+            logger.warning(f"Failed to load experiment {filepath}: {e}")
+
+    return None
 
 
 def load_experiment_results() -> List[Dict[str, Any]]:
-    """Load all experiment results from disk."""
-    if not RESULTS_DIR.exists():
-        return []
+    """Load all experiment results from database or disk, with deduplication and syncing."""
+    results_by_id = {}
+    db_available = False
 
-    results = []
-    for f in sorted(RESULTS_DIR.glob("*.json")):
-        if f.name == "all_experiments.json":
-            continue
-        try:
-            with open(f) as fh:
-                results.append(json.load(fh))
-        except Exception as e:
-            logger.warning(f"Failed to load {f}: {e}")
+    # 1. Try DB
+    try:
+        from app.database.connection import get_db_session, get_engine_instance
+        from app.models.database import ExperimentRecord
+        if get_engine_instance() is not None:
+            db_available = True
+            with get_db_session() as session:
+                recs = session.query(ExperimentRecord).order_by(ExperimentRecord.started_at.asc()).all()
+                for rec in recs:
+                    d = _record_to_dict(rec)
+                    results_by_id[d["experiment_id"]] = d
+    except Exception as e:
+        logger.debug(f"DB load failed or unavailable: {e}")
 
+    # 2. Also check disk
+    if RESULTS_DIR.exists():
+        for f in sorted(RESULTS_DIR.glob("*.json")):
+            if f.name == "all_experiments.json":
+                continue
+            try:
+                with open(f) as fh:
+                    data = json.load(fh)
+                    if isinstance(data, dict) and "experiment_id" in data:
+                        exp_id = data["experiment_id"]
+                        if exp_id not in results_by_id:
+                            results_by_id[exp_id] = data
+                            if db_available:
+                                try:
+                                    _save_experiment_to_db(data)
+                                except Exception:
+                                    pass
+            except Exception as e:
+                logger.warning(f"Failed to load {f}: {e}")
+
+    # Sort chronologically by started_at
+    results = list(results_by_id.values())
+    results.sort(key=lambda x: str(x.get("started_at") or ""))
     return results
 
 
